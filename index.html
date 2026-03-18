@@ -125,35 +125,68 @@
     }
 
     .visual-break .vb-art .vb-layer {
-      position: absolute; border-radius: 50%; filter: blur(80px);
-      animation: breathe 10s ease-in-out infinite;
+      position: absolute; border-radius: 50%;
+      filter: blur(120px);
+    }
+    .visual-break .vb-art .vb-layer.animate {
+      animation: breathe 12s ease-in-out infinite;
     }
 
-    /* Theme 1: Warm hands / touch */
-    .vb-theme-touch { background: linear-gradient(135deg, #c9a998 0%, #e8b4a8 30%, #f0c9b8 60%, #dcc4b2 100%); }
-    .vb-theme-touch .vb-l1 { width: 60%; height: 80%; top: -10%; left: 10%; background: radial-gradient(circle, rgba(212,136,126,0.6), transparent 70%); }
-    .vb-theme-touch .vb-l2 { width: 50%; height: 70%; bottom: -15%; right: 5%; background: radial-gradient(circle, rgba(212,165,116,0.5), transparent 70%); animation-delay: -3s; }
-    .vb-theme-touch .vb-l3 { width: 40%; height: 60%; top: 20%; right: 30%; background: radial-gradient(circle, rgba(240,201,184,0.5), transparent 60%); animation-delay: -6s; }
+    /* Theme 1: Warm touch — soft peach/rose organic cloud */
+    .vb-theme-touch {
+      background: radial-gradient(ellipse 120% 100% at 30% 50%, #f0c9b8, #e8c4b8 30%, #ddb8a8 55%, #d4ac9a 80%, #c9a998);
+    }
+    .vb-theme-touch .vb-l1 { width: 80%; height: 120%; top: -20%; left: -10%;
+      background: radial-gradient(ellipse at 40% 50%, rgba(240,201,184,0.7) 0%, rgba(232,180,168,0.4) 35%, transparent 70%); }
+    .vb-theme-touch .vb-l2 { width: 70%; height: 100%; bottom: -25%; right: -15%;
+      background: radial-gradient(ellipse at 60% 50%, rgba(212,165,116,0.35) 0%, rgba(200,150,130,0.2) 40%, transparent 75%);
+      animation: breathe2 14s ease-in-out infinite; }
+    .vb-theme-touch .vb-l3 { width: 50%; height: 80%; top: 10%; left: 35%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(245,235,227,0.5) 0%, transparent 65%);
+      animation: drift 16s ease-in-out infinite; }
+    .vb-theme-touch .vb-l4 { width: 40%; height: 60%; top: -5%; right: 10%;
+      background: radial-gradient(circle, rgba(212,136,126,0.25) 0%, transparent 60%);
+      animation: breathe 18s ease-in-out infinite; }
 
-    /* Theme 2: Light / warmth */
-    .vb-theme-light { background: linear-gradient(160deg, #dcc4b2 0%, #e8b4a8 40%, #d4a574 70%, #c9a998 100%); }
-    .vb-theme-light .vb-l1 { width: 70%; height: 90%; top: -20%; right: -10%; background: radial-gradient(circle, rgba(240,201,184,0.7), transparent 60%); }
-    .vb-theme-light .vb-l2 { width: 45%; height: 60%; bottom: 0; left: 10%; background: radial-gradient(circle, rgba(200,112,104,0.3), transparent 70%); animation-delay: -4s; }
-    .vb-theme-light .vb-l3 { width: 55%; height: 50%; top: 30%; left: 40%; background: radial-gradient(circle, rgba(245,235,227,0.5), transparent 60%); animation-delay: -7s; }
+    /* Theme 2: Golden warmth — amber/honey organic light */
+    .vb-theme-light {
+      background: radial-gradient(ellipse 130% 100% at 70% 40%, #f0c9b8, #e8c0ad 25%, #ddb5a0 50%, #d4a990 75%, #cca088);
+    }
+    .vb-theme-light .vb-l1 { width: 90%; height: 130%; top: -30%; right: -20%;
+      background: radial-gradient(ellipse at 55% 45%, rgba(240,210,190,0.65) 0%, rgba(220,180,160,0.3) 40%, transparent 70%); }
+    .vb-theme-light .vb-l2 { width: 60%; height: 90%; bottom: -10%; left: -5%;
+      background: radial-gradient(ellipse at 40% 60%, rgba(212,165,116,0.4) 0%, rgba(200,155,120,0.15) 45%, transparent 75%);
+      animation: breathe2 15s ease-in-out infinite; }
+    .vb-theme-light .vb-l3 { width: 55%; height: 70%; top: 15%; left: 25%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(250,240,230,0.45) 0%, transparent 60%);
+      animation: drift 18s ease-in-out infinite; }
+    .vb-theme-light .vb-l4 { width: 45%; height: 65%; bottom: 5%; right: 20%;
+      background: radial-gradient(circle, rgba(200,112,104,0.15) 0%, transparent 55%);
+      animation: breathe 20s ease-in-out infinite; }
 
-    /* Theme 3: Innovation / creation */
-    .vb-theme-create { background: linear-gradient(135deg, #b08d7d 0%, #c87068 30%, #d4887e 60%, #c9a998 100%); }
-    .vb-theme-create .vb-l1 { width: 55%; height: 75%; top: -5%; left: 25%; background: radial-gradient(circle, rgba(232,180,168,0.6), transparent 65%); }
-    .vb-theme-create .vb-l2 { width: 50%; height: 65%; bottom: -10%; right: 15%; background: radial-gradient(circle, rgba(212,165,116,0.45), transparent 70%); animation-delay: -5s; }
-    .vb-theme-create .vb-l3 { width: 35%; height: 50%; top: 15%; left: 5%; background: radial-gradient(circle, rgba(245,235,227,0.35), transparent 60%); animation-delay: -2s; }
+    /* Theme 3: Deeper rose — creative warmth */
+    .vb-theme-create {
+      background: radial-gradient(ellipse 110% 100% at 50% 55%, #d4a090, #c89888 25%, #c09080 50%, #b88878 75%, #b08070);
+    }
+    .vb-theme-create .vb-l1 { width: 75%; height: 110%; top: -15%; left: 15%;
+      background: radial-gradient(ellipse at 45% 45%, rgba(232,180,168,0.55) 0%, rgba(220,170,155,0.25) 40%, transparent 70%); }
+    .vb-theme-create .vb-l2 { width: 65%; height: 95%; bottom: -20%; right: 0;
+      background: radial-gradient(ellipse at 55% 55%, rgba(212,165,116,0.3) 0%, rgba(200,150,110,0.12) 45%, transparent 70%);
+      animation: breathe2 13s ease-in-out infinite; }
+    .vb-theme-create .vb-l3 { width: 50%; height: 75%; top: 5%; right: 25%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(245,230,220,0.35) 0%, transparent 60%);
+      animation: drift 15s ease-in-out infinite; }
+    .vb-theme-create .vb-l4 { width: 40%; height: 55%; bottom: 10%; left: 5%;
+      background: radial-gradient(circle, rgba(180,100,90,0.2) 0%, transparent 55%);
+      animation: breathe 17s ease-in-out infinite; }
 
     .visual-break .vb-edge-top {
-      position: absolute; top: 0; left: 0; right: 0; height: 80px;
+      position: absolute; top: 0; left: 0; right: 0; height: 100px;
       background: linear-gradient(180deg, var(--paper) 0%, transparent 100%);
       z-index: 1;
     }
     .visual-break .vb-edge-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
       background: linear-gradient(0deg, var(--paper) 0%, transparent 100%);
       z-index: 1;
     }
@@ -636,6 +669,7 @@
     <div class="vb-layer vb-l1"></div>
     <div class="vb-layer vb-l2"></div>
     <div class="vb-layer vb-l3"></div>
+    <div class="vb-layer vb-l4"></div>
   </div>
   <div class="vb-edge-top"></div>
   <div class="vb-edge-bottom"></div>
@@ -686,6 +720,7 @@
     <div class="vb-layer vb-l1"></div>
     <div class="vb-layer vb-l2"></div>
     <div class="vb-layer vb-l3"></div>
+    <div class="vb-layer vb-l4"></div>
   </div>
   <div class="vb-edge-top"></div>
   <div class="vb-edge-bottom"></div>
@@ -780,6 +815,7 @@
     <div class="vb-layer vb-l1"></div>
     <div class="vb-layer vb-l2"></div>
     <div class="vb-layer vb-l3"></div>
+    <div class="vb-layer vb-l4"></div>
   </div>
   <div class="vb-edge-top"></div>
   <div class="vb-edge-bottom"></div>
