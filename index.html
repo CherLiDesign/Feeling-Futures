@@ -113,37 +113,59 @@
       border-radius: 20px;
     }
 
-    /* ═══ Visual Break (full-bleed image) ═══ */
+    /* ═══ Visual Break (CSS gradient art) ═══ */
     .visual-break {
       position: relative; width: 100%;
       height: 50vh; min-height: 360px;
       overflow: hidden;
     }
 
-    .visual-break img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      filter: saturate(0.8) brightness(1.05);
+    .visual-break .vb-art {
+      position: absolute; inset: 0;
     }
 
-    .visual-break .vb-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg,
-        rgba(243, 236, 229, 0.3) 0%,
-        rgba(243, 236, 229, 0) 30%,
-        rgba(243, 236, 229, 0) 70%,
-        rgba(243, 236, 229, 0.5) 100%
-      );
+    .visual-break .vb-art .vb-layer {
+      position: absolute; border-radius: 50%; filter: blur(80px);
+      animation: breathe 10s ease-in-out infinite;
+    }
+
+    /* Theme 1: Warm hands / touch */
+    .vb-theme-touch { background: linear-gradient(135deg, #c9a998 0%, #e8b4a8 30%, #f0c9b8 60%, #dcc4b2 100%); }
+    .vb-theme-touch .vb-l1 { width: 60%; height: 80%; top: -10%; left: 10%; background: radial-gradient(circle, rgba(212,136,126,0.6), transparent 70%); }
+    .vb-theme-touch .vb-l2 { width: 50%; height: 70%; bottom: -15%; right: 5%; background: radial-gradient(circle, rgba(212,165,116,0.5), transparent 70%); animation-delay: -3s; }
+    .vb-theme-touch .vb-l3 { width: 40%; height: 60%; top: 20%; right: 30%; background: radial-gradient(circle, rgba(240,201,184,0.5), transparent 60%); animation-delay: -6s; }
+
+    /* Theme 2: Light / warmth */
+    .vb-theme-light { background: linear-gradient(160deg, #dcc4b2 0%, #e8b4a8 40%, #d4a574 70%, #c9a998 100%); }
+    .vb-theme-light .vb-l1 { width: 70%; height: 90%; top: -20%; right: -10%; background: radial-gradient(circle, rgba(240,201,184,0.7), transparent 60%); }
+    .vb-theme-light .vb-l2 { width: 45%; height: 60%; bottom: 0; left: 10%; background: radial-gradient(circle, rgba(200,112,104,0.3), transparent 70%); animation-delay: -4s; }
+    .vb-theme-light .vb-l3 { width: 55%; height: 50%; top: 30%; left: 40%; background: radial-gradient(circle, rgba(245,235,227,0.5), transparent 60%); animation-delay: -7s; }
+
+    /* Theme 3: Innovation / creation */
+    .vb-theme-create { background: linear-gradient(135deg, #b08d7d 0%, #c87068 30%, #d4887e 60%, #c9a998 100%); }
+    .vb-theme-create .vb-l1 { width: 55%; height: 75%; top: -5%; left: 25%; background: radial-gradient(circle, rgba(232,180,168,0.6), transparent 65%); }
+    .vb-theme-create .vb-l2 { width: 50%; height: 65%; bottom: -10%; right: 15%; background: radial-gradient(circle, rgba(212,165,116,0.45), transparent 70%); animation-delay: -5s; }
+    .vb-theme-create .vb-l3 { width: 35%; height: 50%; top: 15%; left: 5%; background: radial-gradient(circle, rgba(245,235,227,0.35), transparent 60%); animation-delay: -2s; }
+
+    .visual-break .vb-edge-top {
+      position: absolute; top: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(180deg, var(--paper) 0%, transparent 100%);
+      z-index: 1;
+    }
+    .visual-break .vb-edge-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(0deg, var(--paper) 0%, transparent 100%);
+      z-index: 1;
     }
 
     .visual-break .vb-glass {
       position: absolute; bottom: 3rem; left: 3rem; right: 3rem;
-      padding: 2rem 2.5rem;
-      background: rgba(255,255,255,0.2);
+      padding: 2rem 2.5rem; z-index: 2;
+      background: rgba(255,255,255,0.18);
       backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 16px;
-      color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      color: var(--warm-deep); text-shadow: none;
     }
 
     .visual-break .vb-glass h3 {
@@ -153,7 +175,7 @@
     }
 
     .visual-break .vb-glass p {
-      font-size: 0.95rem; opacity: 0.9; font-weight: 300;
+      font-size: 0.95rem; opacity: 0.7; font-weight: 400;
     }
 
     /* ═══ Nav ═══ */
@@ -608,8 +630,13 @@
 
 <!-- ═══ Visual Break 1 ═══ -->
 <div class="visual-break">
-  <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1600&q=80" alt="Warm light through hands" loading="lazy">
-  <div class="vb-overlay"></div>
+  <div class="vb-art vb-theme-touch">
+    <div class="vb-layer vb-l1"></div>
+    <div class="vb-layer vb-l2"></div>
+    <div class="vb-layer vb-l3"></div>
+  </div>
+  <div class="vb-edge-top"></div>
+  <div class="vb-edge-bottom"></div>
   <div class="vb-glass">
     <h3 class="en">Where technology learns to feel</h3>
     <h3 class="cn">当技术学会感知</h3>
@@ -653,8 +680,13 @@
 
 <!-- ═══ Visual Break 2 ═══ -->
 <div class="visual-break">
-  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80" alt="Abstract warm light" loading="lazy">
-  <div class="vb-overlay"></div>
+  <div class="vb-art vb-theme-light">
+    <div class="vb-layer vb-l1"></div>
+    <div class="vb-layer vb-l2"></div>
+    <div class="vb-layer vb-l3"></div>
+  </div>
+  <div class="vb-edge-top"></div>
+  <div class="vb-edge-bottom"></div>
   <div class="vb-glass">
     <h3 class="en">From sensing to making</h3><h3 class="cn">从感知到创造</h3>
     <p class="en">Each session builds new creative muscles</p><p class="cn">每一次课程都构建新的创造力</p>
@@ -690,7 +722,7 @@
   <p class="lead cn">每个方向都是文化需求、技术和市场机遇的交汇。</p>
   <div class="projects-grid">
     <div class="project-type">
-      <div class="pt-bg" style="background-image:url('https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=800&q=80');"></div>
+      <div class="pt-bg" style="background:linear-gradient(135deg, #c9a998 0%, #e8b4a8 40%, #f0c9b8 70%, #d4a574 100%);"></div>
       <div class="pt-overlay"></div>
       <div class="pt-content">
         <div class="type-label en">Territory 01</div><div class="type-label cn">方向 01</div>
@@ -702,7 +734,7 @@
       </div>
     </div>
     <div class="project-type">
-      <div class="pt-bg" style="background-image:url('https://images.unsplash.com/photo-1604871000636-074fa5117945?w=800&q=80');"></div>
+      <div class="pt-bg" style="background:linear-gradient(135deg, #d4887e 0%, #c87068 40%, #b08d7d 70%, #dcc4b2 100%);"></div>
       <div class="pt-overlay"></div>
       <div class="pt-content">
         <div class="type-label en">Territory 02</div><div class="type-label cn">方向 02</div>
@@ -714,7 +746,7 @@
       </div>
     </div>
     <div class="project-type">
-      <div class="pt-bg" style="background-image:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80');"></div>
+      <div class="pt-bg" style="background:linear-gradient(135deg, #96706a 0%, #b08d7d 35%, #c9a998 65%, #dcc4b2 100%);"></div>
       <div class="pt-overlay"></div>
       <div class="pt-content">
         <div class="type-label en">Territory 03</div><div class="type-label cn">方向 03</div>
@@ -726,7 +758,7 @@
       </div>
     </div>
     <div class="project-type">
-      <div class="pt-bg" style="background-image:url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80');"></div>
+      <div class="pt-bg" style="background:linear-gradient(135deg, #e8b4a8 0%, #d4a574 40%, #c9a998 70%, #b08d7d 100%);"></div>
       <div class="pt-overlay"></div>
       <div class="pt-content">
         <div class="type-label en">Territory 04</div><div class="type-label cn">方向 04</div>
@@ -742,8 +774,13 @@
 
 <!-- ═══ Visual Break 3 ═══ -->
 <div class="visual-break">
-  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80" alt="Warm human moment" loading="lazy">
-  <div class="vb-overlay"></div>
+  <div class="vb-art vb-theme-create">
+    <div class="vb-layer vb-l1"></div>
+    <div class="vb-layer vb-l2"></div>
+    <div class="vb-layer vb-l3"></div>
+  </div>
+  <div class="vb-edge-top"></div>
+  <div class="vb-edge-bottom"></div>
   <div class="vb-glass">
     <h3 class="en">Every project is both artwork and innovation</h3><h3 class="cn">每个项目既是艺术品也是创新</h3>
     <p class="en">Exhibition-ready, competition-ready, future-ready</p><p class="cn">可展览、可竞赛、面向未来</p>
