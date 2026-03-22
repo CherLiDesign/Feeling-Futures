@@ -167,49 +167,50 @@
     .glance-label { font-size: 0.875rem; color: var(--skin-4); font-weight: 500; }
     @media (max-width: 768px) { .glance-strip { grid-template-columns: repeat(2, 1fr); } .glance-item { border-bottom: 1px solid rgba(255,255,255,0.06); } }
 
-    /* ═══ Process Flow (horizontal visual) ═══ */
+    /* ═══ Process Flow (horizontal cards) ═══ */
     .process-flow {
-      display: flex; align-items: stretch; gap: 0; margin-top: 3rem;
-      position: relative;
-    }
-    .process-flow::after {
-      content: ''; position: absolute; top: 50%; left: 60px; right: 60px; height: 3px;
-      background: linear-gradient(90deg, var(--peach), var(--rose), var(--flush));
-      z-index: 0; transform: translateY(-50%);
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;
+      margin-top: 3rem; position: relative;
     }
     .pf-stage {
-      flex: 1; position: relative; z-index: 1;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
+      position: relative; padding: 2rem 1.25rem 1.5rem;
+      border-radius: 16px; text-align: center;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.35);
+      transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+      display: flex; flex-direction: column; align-items: center;
     }
-    .pf-circle {
-      width: 85px; height: 85px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; flex-direction: column;
-      font-family: var(--ff-display); font-weight: 700;
-      margin-bottom: 1.2rem; position: relative;
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 2px solid rgba(255,255,255,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
+    .pf-stage:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.04); }
+    .pf-stage::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      border-radius: 16px 16px 0 0;
     }
-    .pf-circle:hover { transform: scale(1.08); }
-    .pf-stage:nth-child(1) .pf-circle { background: rgba(240,201,184,0.6); color: var(--warm-dark); }
-    .pf-stage:nth-child(2) .pf-circle { background: rgba(232,180,168,0.6); color: var(--warm-dark); }
-    .pf-stage:nth-child(3) .pf-circle { background: rgba(220,160,145,0.6); color: var(--warm-dark); }
-    .pf-stage:nth-child(4) .pf-circle { background: rgba(212,145,130,0.6); color: var(--warm-dark); }
-    .pf-stage:nth-child(5) .pf-circle { background: rgba(200,112,104,0.6); color: var(--warm-dark); }
-    .pf-circle .pf-icon { font-size: 1.8rem; line-height: 1; }
-    .pf-circle .pf-num { font-size: 0.75rem; letter-spacing: 0.1em; opacity: 0.7; }
-    .pf-name { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .pf-sessions { font-size: 0.875rem; color: var(--stone); }
+    .pf-stage:nth-child(1)::before { background: var(--peach); }
+    .pf-stage:nth-child(2)::before { background: var(--blush); }
+    .pf-stage:nth-child(3)::before { background: var(--rose); }
+    .pf-stage:nth-child(4)::before { background: var(--flush); }
+    .pf-stage:nth-child(5)::before { background: linear-gradient(90deg, var(--flush), var(--warm-dark)); }
+    .pf-num {
+      font-family: var(--ff-display); font-size: 2rem; font-weight: 700;
+      line-height: 1; margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pf-name {
+      font-family: var(--ff-display); font-size: 0.95rem; font-weight: 700;
+      line-height: 1.3; color: var(--ink);
+    }
     .pf-arrow {
-      position: absolute; top: 42px; right: -16px; z-index: 2;
-      width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; color: var(--rose);
+      position: absolute; top: 50%; right: -14px; z-index: 2;
+      font-size: 0.875rem; color: var(--skin-5);
+      transform: translateY(-50%);
     }
     .pf-stage:last-child .pf-arrow { display: none; }
     @media (max-width: 768px) {
-      .process-flow { flex-direction: column; gap: 1.5rem; }
-      .process-flow::after { display: none; }
-      .pf-arrow { display: none !important; }
+      .process-flow { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .pf-arrow { display: none; }
     }
 
     /* ═══ Session Detail Cards ═══ */
@@ -534,27 +535,27 @@
 
   <div class="process-flow">
     <div class="pf-stage">
-      <div class="pf-circle"><div class="pf-icon">👁</div><div class="pf-num">W1</div></div>
+      <div class="pf-num">W1</div>
       <div class="pf-name en">Research &<br>Sensing</div><div class="pf-name cn">研究与感知</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle"><div class="pf-icon">🤖</div><div class="pf-num">W2</div></div>
+      <div class="pf-num">W2</div>
       <div class="pf-name en">AI Tools &<br>Insights</div><div class="pf-name cn">AI 工具<br>与洞察</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle"><div class="pf-icon">✦</div><div class="pf-num">W3</div></div>
+      <div class="pf-num">W3</div>
       <div class="pf-name en">Concept<br>Design</div><div class="pf-name cn">概念设计</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle"><div class="pf-icon">📐</div><div class="pf-num">W4</div></div>
+      <div class="pf-num">W4</div>
       <div class="pf-name en">Innovation<br>Structuring</div><div class="pf-name cn">创新<br>结构化</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle"><div class="pf-icon">◆</div><div class="pf-num">W5</div></div>
+      <div class="pf-num">W5</div>
       <div class="pf-name en">Prototype &<br>Final Pitch</div><div class="pf-name cn">原型与<br>终期路演</div>
     </div>
   </div>
