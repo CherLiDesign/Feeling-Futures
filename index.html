@@ -182,7 +182,7 @@
       display: flex; flex-direction: column; align-items: center; text-align: center;
     }
     .pf-circle {
-      width: 100px; height: 100px; border-radius: 50%;
+      width: 85px; height: 85px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center; flex-direction: column;
       font-family: var(--ff-display); font-weight: 700;
       margin-bottom: 1.2rem; position: relative;
@@ -193,13 +193,15 @@
     .pf-circle:hover { transform: scale(1.08); }
     .pf-stage:nth-child(1) .pf-circle { background: rgba(240,201,184,0.6); color: var(--warm-dark); }
     .pf-stage:nth-child(2) .pf-circle { background: rgba(232,180,168,0.6); color: var(--warm-dark); }
-    .pf-stage:nth-child(3) .pf-circle { background: rgba(212,136,126,0.6); color: var(--warm-dark); }
+    .pf-stage:nth-child(3) .pf-circle { background: rgba(220,160,145,0.6); color: var(--warm-dark); }
+    .pf-stage:nth-child(4) .pf-circle { background: rgba(212,145,130,0.6); color: var(--warm-dark); }
+    .pf-stage:nth-child(5) .pf-circle { background: rgba(200,112,104,0.6); color: var(--warm-dark); }
     .pf-circle .pf-icon { font-size: 1.8rem; line-height: 1; }
     .pf-circle .pf-num { font-size: 0.75rem; letter-spacing: 0.1em; opacity: 0.7; }
     .pf-name { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem; }
     .pf-sessions { font-size: 0.875rem; color: var(--stone); }
     .pf-arrow {
-      position: absolute; top: 50px; right: -18px; z-index: 2;
+      position: absolute; top: 42px; right: -16px; z-index: 2;
       width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
       font-size: 1.2rem; color: var(--rose);
     }
@@ -532,21 +534,28 @@
 
   <div class="process-flow">
     <div class="pf-stage">
-      <div class="pf-circle"><div class="pf-icon">👁</div><div class="pf-num">W1–W2</div></div>
-      <div class="pf-name en">Sensing the Now</div><div class="pf-name cn">感知当下</div>
-      <div class="pf-sessions en">Week 1–2</div><div class="pf-sessions cn">第 1–2 周</div>
+      <div class="pf-circle"><div class="pf-icon">👁</div><div class="pf-num">W1</div></div>
+      <div class="pf-name en">Research &<br>Sensing</div><div class="pf-name cn">研究与感知</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle"><div class="pf-icon">✦</div><div class="pf-num">W3–W4</div></div>
-      <div class="pf-name en">Designing Future States</div><div class="pf-name cn">设计未来状态</div>
-      <div class="pf-sessions en">Week 3–4</div><div class="pf-sessions cn">第 3–4 周</div>
+      <div class="pf-circle"><div class="pf-icon">🤖</div><div class="pf-num">W2</div></div>
+      <div class="pf-name en">AI Tools &<br>Insights</div><div class="pf-name cn">AI 工具<br>与洞察</div>
+      <div class="pf-arrow">→</div>
+    </div>
+    <div class="pf-stage">
+      <div class="pf-circle"><div class="pf-icon">✦</div><div class="pf-num">W3</div></div>
+      <div class="pf-name en">Concept<br>Design</div><div class="pf-name cn">概念设计</div>
+      <div class="pf-arrow">→</div>
+    </div>
+    <div class="pf-stage">
+      <div class="pf-circle"><div class="pf-icon">📐</div><div class="pf-num">W4</div></div>
+      <div class="pf-name en">Innovation<br>Structuring</div><div class="pf-name cn">创新<br>结构化</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
       <div class="pf-circle"><div class="pf-icon">◆</div><div class="pf-num">W5</div></div>
-      <div class="pf-name en">Making It Real</div><div class="pf-name cn">让它成真</div>
-      <div class="pf-sessions en">Week 5</div><div class="pf-sessions cn">第 5 周</div>
+      <div class="pf-name en">Prototype &<br>Final Pitch</div><div class="pf-name cn">原型与<br>终期路演</div>
     </div>
   </div>
 </section>
