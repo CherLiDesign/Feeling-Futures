@@ -167,18 +167,18 @@
     .glance-label { font-size: 0.875rem; color: var(--skin-4); font-weight: 500; }
     @media (max-width: 768px) { .glance-strip { grid-template-columns: repeat(2, 1fr); } .glance-item { border-bottom: 1px solid rgba(255,255,255,0.06); } }
 
-    /* ═══ Process Flow (circle timeline) ═══ */
+    /* ═══ Process Flow (horizontal visual) ═══ */
     .process-flow {
       display: flex; align-items: flex-start; justify-content: space-between;
-      margin-top: 3rem; position: relative; padding: 0 10px;
+      margin-top: 3rem; position: relative;
     }
-    /* connecting line — anchored to circle centers */
-    .process-flow::after {
+    /* connecting line through circle centers */
+    .process-flow::before {
       content: ''; position: absolute;
-      top: 40px; /* half of circle height */
-      left: calc(10% + 10px); right: calc(10% + 10px);
+      top: 50px; /* exact center of 100px circles */
+      left: 10%; right: 10%;
       height: 2px;
-      background: linear-gradient(90deg, var(--peach), var(--blush), var(--rose), var(--flush));
+      background: linear-gradient(90deg, var(--peach), var(--blush), var(--rose), var(--flush), var(--warm-dark));
       z-index: 0;
     }
     .pf-stage {
@@ -186,36 +186,34 @@
       display: flex; flex-direction: column; align-items: center; text-align: center;
     }
     .pf-circle {
-      width: 80px; height: 80px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--ff-display); font-weight: 700; font-size: 1.1rem;
-      margin-bottom: 1rem; position: relative;
-      border: 2px solid rgba(255,255,255,0.5);
+      width: 100px; height: 100px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      font-family: var(--ff-display); font-weight: 700;
+      margin-bottom: 1.2rem;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.4);
       transition: transform 0.3s, box-shadow 0.3s;
-      color: var(--warm-dark); letter-spacing: -0.02em;
+      gap: 2px;
     }
-    .pf-circle:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(200,112,104,0.15); }
-    .pf-stage:nth-child(1) .pf-circle { background: rgba(240,201,184,0.5); }
-    .pf-stage:nth-child(2) .pf-circle { background: rgba(235,190,175,0.5); }
-    .pf-stage:nth-child(3) .pf-circle { background: rgba(225,170,155,0.55); }
-    .pf-stage:nth-child(4) .pf-circle { background: rgba(215,150,135,0.55); }
-    .pf-stage:nth-child(5) .pf-circle { background: rgba(200,130,115,0.6); }
-    .pf-name {
-      font-family: var(--ff-display); font-size: 0.95rem; font-weight: 700;
-      line-height: 1.35; color: var(--ink);
-    }
-    /* arrow centered between circles */
+    .pf-circle:hover { transform: scale(1.08); box-shadow: 0 8px 30px rgba(200,112,104,0.12); }
+    .pf-stage:nth-child(1) .pf-circle { background: rgba(240,201,184,0.5); color: var(--warm-dark); }
+    .pf-stage:nth-child(2) .pf-circle { background: rgba(235,188,172,0.5); color: var(--warm-dark); }
+    .pf-stage:nth-child(3) .pf-circle { background: rgba(225,168,150,0.55); color: var(--warm-dark); }
+    .pf-stage:nth-child(4) .pf-circle { background: rgba(215,148,132,0.55); color: var(--warm-dark); }
+    .pf-stage:nth-child(5) .pf-circle { background: rgba(200,125,110,0.6); color: var(--warm-dark); }
+    .pf-circle .pf-icon { font-size: 1.6rem; line-height: 1; }
+    .pf-circle .pf-num { font-size: 0.7rem; letter-spacing: 0.08em; opacity: 0.6; }
+    .pf-name { font-family: var(--ff-display); font-size: 0.95rem; font-weight: 700; line-height: 1.35; }
+    /* arrow sits exactly between stages, vertically centered on circles */
     .pf-arrow {
-      position: absolute; top: 40px; right: 0; z-index: 2;
-      width: 0; height: 0;
+      position: absolute; top: 50px; right: 0; z-index: 2;
       transform: translate(50%, -50%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.875rem; color: var(--rose); font-weight: 300;
+      font-size: 1rem; color: var(--rose); opacity: 0.5;
     }
     .pf-stage:last-child .pf-arrow { display: none; }
     @media (max-width: 768px) {
-      .process-flow { flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
-      .process-flow::after { display: none; }
+      .process-flow { flex-wrap: wrap; gap: 2rem; justify-content: center; }
+      .process-flow::before { display: none; }
       .pf-stage { flex: 0 0 40%; }
       .pf-arrow { display: none; }
     }
@@ -542,27 +540,27 @@
 
   <div class="process-flow">
     <div class="pf-stage">
-      <div class="pf-circle">W1</div>
+      <div class="pf-circle"><span class="pf-icon">👁</span><span class="pf-num">W1</span></div>
       <div class="pf-name en">Research &<br>Sensing</div><div class="pf-name cn">研究与<br>感知</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle">W2</div>
+      <div class="pf-circle"><span class="pf-icon">🤖</span><span class="pf-num">W2</span></div>
       <div class="pf-name en">AI Tools &<br>Insights</div><div class="pf-name cn">AI 工具<br>与洞察</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle">W3</div>
+      <div class="pf-circle"><span class="pf-icon">✦</span><span class="pf-num">W3</span></div>
       <div class="pf-name en">Concept<br>Design</div><div class="pf-name cn">概念<br>设计</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle">W4</div>
+      <div class="pf-circle"><span class="pf-icon">📐</span><span class="pf-num">W4</span></div>
       <div class="pf-name en">Innovation<br>Structuring</div><div class="pf-name cn">创新<br>结构化</div>
       <div class="pf-arrow">→</div>
     </div>
     <div class="pf-stage">
-      <div class="pf-circle">W5</div>
+      <div class="pf-circle"><span class="pf-icon">◆</span><span class="pf-num">W5</span></div>
       <div class="pf-name en">Prototype &<br>Final Pitch</div><div class="pf-name cn">原型与<br>终期路演</div>
     </div>
   </div>
