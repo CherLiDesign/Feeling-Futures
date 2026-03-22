@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feeling Futures 感知未来 — Workshop Proposal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a1a;
+      --paper: #fafaf8;
+      --mist: #f0eeeb;
+      --stone: #6b6560;
+      --warm: #c4a882;
+      --accent: #e8562a;
+      --deep: #2c1810;
+      --glow: rgba(232, 86, 42, 0.08);
+      --violet: #6b4c9a;
+      --teal: #2a8a7a;
+      --gold: #c49a2a;
+      --rose: #c45a6a;
+      --ff-serif: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+      --ff-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ff-cn: 'Noto Serif SC', serif;
+      --ff-cn-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--ff-sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Language Toggle ─── */
+    [data-lang="en"] .cn { display: none !important; }
+    [data-lang="cn"] .en { display: none !important; }
+
+    [data-lang="cn"] body,
+    [data-lang="cn"] p,
+    [data-lang="cn"] li,
+    [data-lang="cn"] span,
+    [data-lang="cn"] h4,
+    [data-lang="cn"] dt,
+    [data-lang="cn"] dd {
+      font-family: var(--ff-cn-sans);
+    }
+
+    [data-lang="cn"] h1,
+    [data-lang="cn"] h2,
+    [data-lang="cn"] h3,
+    [data-lang="cn"] blockquote {
+      font-family: var(--ff-cn);
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 250, 248, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+    }
+
+    nav .logo {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    nav .logo span {
+      font-family: var(--ff-cn);
+      font-weight: 400;
+      margin-left: 0.5rem;
+      color: var(--stone);
+    }
+
+    nav .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--stone);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: var(--mist);
+      border-radius: 100px;
+      padding: 3px;
+      gap: 0;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--stone);
+      cursor: pointer;
+      border-radius: 100px;
+      transition: all 0.25s ease;
+      font-family: var(--ff-sans);
+    }
+
+    .lang-toggle button.active {
+      background: white;
+      color: var(--ink);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    /* ─── Sections ─── */
+    section {
+      padding: 7rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+
+    h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.35;
+      margin-bottom: 1rem;
+    }
+
+    p.lead {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--stone);
+      max-width: 680px;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 8rem 3rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .hero-poster {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-poster img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.1),
+        0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .hero-poster img:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow:
+        0 28px 80px rgba(0,0,0,0.12),
+        0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .hero-poster::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(232, 86, 42, 0.08), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-poster::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(107, 76, 154, 0.06), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        min-height: auto;
+        padding-top: 7rem;
+      }
+      .hero-poster { order: -1; }
+      .hero-poster img { max-width: 320px; }
+    }
+
+    .hero-overline {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    [data-lang="cn"] .hero h1 {
+      font-family: var(--ff-cn);
+      letter-spacing: 0.08em;
+    }
+
+    .hero .cn-title {
+      font-family: var(--ff-cn);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--stone);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.15em;
+    }
+
+    .hero .subtitle {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--stone);
+      margin-bottom: 3rem;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    [data-lang="cn"] .hero .subtitle {
+      font-family: var(--ff-cn);
+      font-style: normal;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+      color: var(--stone);
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 2rem;
+    }
+
+    .hero-meta dt {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-meta dd { font-weight: 400; }
+
+    /* ─── Key Visual Direction ─── */
+    .visual-direction {
+      background: var(--mist);
+      padding: 4rem 3rem;
+      margin: 0 -3rem;
+      border-radius: 0;
+    }
+
+    .visual-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .visual-keywords span {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--stone);
+      transition: all 0.2s;
+    }
+
+    .visual-keywords span:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ─── Why Section ─── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .why-card {
+      padding: 2.5rem;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .why-card:hover {
+      border-color: rgba(0,0,0,0.12);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    .why-card .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .why-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .why-card p { font-size: 0.95rem; color: var(--stone); line-height: 1.7; }
+
+    /* ─── Workshop Structure ─── */
+    .stages {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .stages { grid-template-columns: 1fr; }
+    }
+
+    .stage {
+      position: relative;
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: white;
+      overflow: hidden;
+    }
+
+    .stage::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .stage:nth-child(1)::before { background: var(--teal); }
+    .stage:nth-child(2)::before { background: var(--violet); }
+    .stage:nth-child(3)::before { background: var(--accent); }
+
+    .stage-number {
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .stage:nth-child(1) .stage-number { color: var(--teal); }
+    .stage:nth-child(2) .stage-number { color: var(--violet); }
+    .stage:nth-child(3) .stage-number { color: var(--accent); }
+
+    .stage h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+
+    .stage .cn-sub {
+      font-family: var(--ff-cn);
+      font-size: 0.95rem;
+      color: var(--stone);
+      margin-bottom: 1.5rem;
+    }
+
+    .stage p { font-size: 0.95rem; color: var(--stone); line-height: 1.7; margin-bottom: 1.25rem; }
+
+    .session-list {
+      list-style: none;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding-top: 1.25rem;
+    }
+
+    .session-list li {
+      font-size: 0.875rem;
+      color: var(--stone);
+      padding: 0.4rem 0;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .session-list .session-tag {
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      min-width: 3rem;
+    }
+
+    .stage:nth-child(1) .session-tag { color: var(--teal); }
+    .stage:nth-child(2) .session-tag { color: var(--violet); }
+    .stage:nth-child(3) .session-tag { color: var(--accent); }
+
+    /* ─── Outcomes ─── */
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .outcomes-grid { grid-template-columns: 1fr; }
+    }
+
+    .outcome {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.75rem;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px;
+      align-items: flex-start;
+    }
+
+    .outcome .marker {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .outcome h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .outcome p { font-size: 0.875rem; color: var(--stone); line-height: 1.6; }
+
+    /* ─── Project Types ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    .project-type {
+      padding: 2.5rem;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .project-type:nth-child(1) { background: linear-gradient(135deg, #2c1810 0%, #4a2a1a 100%); }
+    .project-type:nth-child(2) { background: linear-gradient(135deg, #1a2a3a 0%, #2a4a5a 100%); }
+    .project-type:nth-child(3) { background: linear-gradient(135deg, #2a1a3a 0%, #4a2a5a 100%); }
+    .project-type:nth-child(4) { background: linear-gradient(135deg, #1a3a2a 0%, #2a5a4a 100%); }
+
+    .project-type .type-label {
+      font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; opacity: 0.6; margin-bottom: 0.75rem;
+    }
+
+    .project-type h3 { font-size: 1.4rem; color: white; margin-bottom: 0.75rem; }
+    .project-type p { font-size: 0.95rem; opacity: 0.8; line-height: 1.7; }
+
+    .project-type .examples {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-type .examples span {
+      font-size: 0.875rem;
+      padding: 0.3rem 0.75rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ─── Deliverables ─── */
+    .deliverables-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .deliverables-row { grid-template-columns: 1fr; }
+    }
+
+    .deliverable-col {
+      padding: 2.5rem;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+    }
+
+    .deliverable-col h3 {
+      font-size: 1.15rem; margin-bottom: 1.5rem;
+      padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .del-item { margin-bottom: 1.25rem; }
+    .del-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .del-item p { font-size: 0.875rem; color: var(--stone); line-height: 1.6; }
+
+    /* ─── Timeline ─── */
+    .timeline { margin-top: 3rem; position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--teal), var(--violet), var(--accent));
+    }
+
+    .tl-item { display: flex; gap: 2rem; padding: 2rem 0; position: relative; }
+
+    .tl-dot {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: white; border: 2px solid var(--mist);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.875rem; font-weight: 700; z-index: 1;
+    }
+
+    .tl-item:nth-child(1) .tl-dot, .tl-item:nth-child(2) .tl-dot { color: var(--teal); border-color: var(--teal); }
+    .tl-item:nth-child(3) .tl-dot, .tl-item:nth-child(4) .tl-dot { color: var(--violet); border-color: var(--violet); }
+    .tl-item:nth-child(5) .tl-dot { color: var(--accent); border-color: var(--accent); }
+
+    .tl-content h4 {
+      font-family: var(--ff-serif);
+      font-size: 1.15rem; font-weight: 400; margin-bottom: 0.25rem;
+    }
+
+    .tl-content .tl-phase {
+      font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+
+    .tl-item:nth-child(1) .tl-phase, .tl-item:nth-child(2) .tl-phase { color: var(--teal); }
+    .tl-item:nth-child(3) .tl-phase, .tl-item:nth-child(4) .tl-phase { color: var(--violet); }
+    .tl-item:nth-child(5) .tl-phase { color: var(--accent); }
+
+    .tl-content p { font-size: 0.95rem; color: var(--stone); line-height: 1.6; }
+
+    .tl-content .tl-outputs {
+      margin-top: 0.75rem;
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+
+    .tl-content .tl-outputs span {
+      font-size: 0.875rem; padding: 0.25rem 0.6rem;
+      background: var(--mist); border-radius: 4px;
+      color: var(--stone); font-weight: 500;
+    }
+
+    /* ─── Faculty Value ─── */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .value-grid { grid-template-columns: 1fr; }
+    }
+
+    .value-item {
+      padding: 2rem;
+      border-left: 3px solid var(--warm);
+      background: linear-gradient(135deg, rgba(196, 168, 130, 0.04), transparent);
+    }
+
+    .value-item h4 {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem;
+    }
+
+    .value-item p { font-size: 0.95rem; color: var(--stone); line-height: 1.7; }
+
+    /* ─── CTA / Footer ─── */
+    .cta-section {
+      text-align: center;
+      padding: 8rem 3rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-section h2 { max-width: none; margin-bottom: 1.5rem; }
+    .cta-section p { font-size: 1.1rem; color: var(--stone); line-height: 1.8; margin-bottom: 2.5rem; }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--ink);
+      color: white;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover { background: var(--accent); transform: translateY(-1px); }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      font-size: 0.875rem;
+      color: var(--stone);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    footer .foot-cn { font-family: var(--ff-cn); margin-top: 0.35rem; }
+
+    /* ─── Misc ─── */
+    .divider { width: 60px; height: 1px; background: var(--warm); margin: 5rem auto; }
+
+    .curatorial {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 6rem 3rem;
+    }
+
+    .curatorial blockquote {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      line-height: 1.8;
+      color: var(--stone);
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    [data-lang="cn"] .curatorial blockquote {
+      font-family: var(--ff-cn);
+      font-style: normal;
+    }
+
+    .curatorial blockquote::before {
+      content: '"';
+      font-family: var(--ff-serif);
+      font-size: 5rem;
+      color: var(--warm);
+      opacity: 0.3;
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+    }
+
+    .accent-band { background: var(--deep); color: white; padding: 5rem 3rem; }
+    .accent-band section { padding: 0; }
+    .accent-band .section-label { color: var(--warm); }
+    .accent-band .section-label::before { background: var(--warm); }
+    .accent-band h2 { color: white; }
+    .accent-band p.lead { color: rgba(255,255,255,0.7); }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 6rem 1.5rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ Navigation ═══════════ -->
+<nav>
+  <div class="logo">Feeling Futures <span>感知未来</span></div>
+  <div class="nav-right">
+    <ul>
+      <li>
+        <a href="#why" class="en">Why</a>
+        <a href="#why" class="cn">为什么</a>
+      </li>
+      <li>
+        <a href="#structure" class="en">Structure</a>
+        <a href="#structure" class="cn">架构</a>
+      </li>
+      <li>
+        <a href="#outcomes" class="en">Outcomes</a>
+        <a href="#outcomes" class="cn">成果</a>
+      </li>
+      <li>
+        <a href="#projects" class="en">Projects</a>
+        <a href="#projects" class="cn">项目</a>
+      </li>
+      <li>
+        <a href="#timeline" class="en">Timeline</a>
+        <a href="#timeline" class="cn">时间线</a>
+      </li>
+      <li>
+        <a href="#value" class="en">Value</a>
+        <a href="#value" class="cn">价值</a>
+      </li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-cn" onclick="setLang('cn')">中文</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ Hero ═══════════ -->
+<div class="hero fade-in">
+  <div class="hero-content">
+    <div class="hero-overline en">International Joint Workshop Proposal</div>
+    <div class="hero-overline cn">国际联合工作坊提案</div>
+
+    <h1 class="en">Feeling Futures</h1>
+    <h1 class="cn">感知未来</h1>
+
+    <div class="cn-title en" style="font-family: var(--ff-cn); letter-spacing: 0.15em;">感知未来</div>
+    <div class="cn-title cn" style="font-family: var(--ff-serif); letter-spacing: 0;">Feeling Futures</div>
+
+    <div class="subtitle en">Designing Emotional Experiences in the AI Economy</div>
+    <div class="subtitle cn">在人工智能经济中设计情感体验</div>
+
+    <dl class="hero-meta">
+      <div>
+        <dt class="en">Format</dt>
+        <dt class="cn">形式</dt>
+        <dd class="en">5-Session Distributed Sprint</dd>
+        <dd class="cn">5 次分布式冲刺工作坊</dd>
+      </div>
+      <div>
+        <dt class="en">Duration</dt>
+        <dt class="cn">周期</dt>
+        <dd class="en">Half-day sessions across 3 weeks</dd>
+        <dd class="cn">3 周内完成，每次半天</dd>
+      </div>
+      <div>
+        <dt class="en">Output</dt>
+        <dt class="cn">产出</dt>
+        <dd class="en">Concept → Prototype → Pitch</dd>
+        <dd class="cn">概念 → 原型 → 路演</dd>
+      </div>
+      <div>
+        <dt class="en">Positioning</dt>
+        <dt class="cn">定位</dt>
+        <dd class="en">Experience Innovation × Emotional Economy × AI Futures</dd>
+        <dd class="cn">体验创新 × 情感经济 × AI 未来</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="hero-poster">
+    <img src="assets/Feeling Future.png" alt="Feeling Futures — Global Innovation Competition & Experience Exhibition">
+  </div>
+</div>
+
+<!-- ═══════════ Curatorial Statement ═══════════ -->
+<div class="curatorial fade-in">
+  <div class="section-label en" style="justify-content: center;">Curatorial Narrative</div>
+  <div class="section-label cn" style="justify-content: center;">策展叙事</div>
+
+  <blockquote class="en">
+    The next economy will not be built on efficiency alone. It will be shaped by how deeply technology can sense, interpret, and respond to human emotion. <em>Feeling Futures</em> asks a generation of designers to imagine the emotional architectures of tomorrow — where AI becomes not a tool of optimization, but a medium of empathy, care, and cultural resonance.
+  </blockquote>
+  <blockquote class="cn">
+    下一个经济时代不会仅仅建立在效率之上。它将取决于技术能多深刻地感知、理解和回应人类情感。「感知未来」邀请新一代设计师去想象明天的情感建筑——在那里，AI 不再是优化的工具，而是共情、关怀与文化共鸣的媒介。
+  </blockquote>
+
+  <p class="lead en" style="text-align: center; margin: 2rem auto 0;">
+    This workshop is a space between a research lab and a design biennale — where poetic vision meets innovation rigor, and where students learn to translate emotional intelligence into experiences the world can feel.
+  </p>
+  <p class="lead cn" style="text-align: center; margin: 2rem auto 0;">
+    这个工作坊是研究实验室与设计双年展之间的一个空间——诗意愿景与创新严谨在此相遇，学生们将学会把情感智慧转化为世界可以感知的体验。
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════ Key Visual Direction ═══════════ -->
+<section class="fade-in">
+  <div class="visual-direction">
+    <div class="section-label en">Key Visual Direction</div>
+    <div class="section-label cn">视觉方向</div>
+
+    <h3 class="en">The visual identity should evoke warmth within technology — organic gradients meeting precise geometries, breath-like animations, and a palette that feels more like dawn light than screen glow.</h3>
+    <h3 class="cn">视觉识别应在技术中唤起温度——有机渐变与精确几何相遇，呼吸般的动效，以及更像晨光而非屏幕光芒的色调。</h3>
+
+    <p class="en" style="color: var(--stone); margin-top: 1rem; font-size: 0.95rem;">Reference worlds: Olafur Eliasson's immersive environments, Neri Oxman's material futures, teamLab's emotional interfaces, the quiet futurism of Muji and Snow Peak.</p>
+    <p class="cn" style="color: var(--stone); margin-top: 1rem; font-size: 0.95rem;">参考世界：Olafur Eliasson 的沉浸式环境、Neri Oxman 的材料未来、teamLab 的情感界面、无印良品与 Snow Peak 的静谧未来主义。</p>
+
+    <div class="visual-keywords en">
+      <span>Soft gradients</span>
+      <span>Generative typography</span>
+      <span>Tactile textures</span>
+      <span>Warm neutrals + signal accents</span>
+      <span>Breath-like motion</span>
+      <span>Eastern minimalism</span>
+      <span>Biomorphic geometry</span>
+      <span>Atmospheric photography</span>
+    </div>
+    <div class="visual-keywords cn">
+      <span>柔和渐变</span>
+      <span>生成式字体</span>
+      <span>触觉质感</span>
+      <span>暖色中性 + 信号色点缀</span>
+      <span>呼吸般动效</span>
+      <span>东方极简</span>
+      <span>仿生几何</span>
+      <span>氛围摄影</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Why Feeling Futures ═══════════ -->
+<section id="why" class="fade-in">
+  <div class="section-label en">Why This, Why Now</div>
+  <div class="section-label cn">为什么是现在</div>
+
+  <h2 class="en">The emotional economy is the next frontier of design innovation</h2>
+  <h2 class="cn">情感经济是设计创新的下一个前沿</h2>
+
+  <p class="lead en">We are entering an era where human feeling becomes both the medium and the market. AI can now sense mood, interpret context, and generate responsive environments. The designers who understand this intersection will define the next generation of experiences.</p>
+  <p class="lead cn">我们正进入一个人类情感既是媒介也是市场的时代。AI 已能感知情绪、理解语境、生成响应式环境。理解这一交叉点的设计师，将定义下一代体验。</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="icon" style="background: rgba(232, 86, 42, 0.08);">🌊</div>
+      <h3 class="en">The Emotional Economy</h3>
+      <h3 class="cn">情感经济</h3>
+      <p class="en">Global markets are shifting from products to experiences, from features to feelings. Emotional design is becoming a core value driver — in wellness, retail, hospitality, mobility, and urban life. China's "experience economy" (体验经济) is a national strategic direction.</p>
+      <p class="cn">全球市场正在从产品转向体验，从功能转向感受。情感设计正在成为核心价值驱动力——在健康、零售、酒店、出行和城市生活领域。中国的「体验经济」已成为国家战略方向。</p>
+    </div>
+    <div class="why-card">
+      <div class="icon" style="background: rgba(107, 76, 154, 0.08);">🧠</div>
+      <h3 class="en">AI as Emotional Medium</h3>
+      <h3 class="cn">AI 作为情感媒介</h3>
+      <p class="en">Generative AI, affective computing, and multimodal sensing are transforming how we design for human feeling. AI is no longer just a backend engine — it is becoming the material of experience itself. Designers must learn to shape this material with intention and sensitivity.</p>
+      <p class="cn">生成式 AI、情感计算和多模态感知正在改变我们为人类感受而设计的方式。AI 不再只是后端引擎——它正在成为体验本身的材料。设计师必须学会带着意图和敏感性来塑造这种材料。</p>
+    </div>
+    <div class="why-card">
+      <div class="icon" style="background: rgba(42, 138, 122, 0.08);">🏙</div>
+      <h3 class="en">Future Lifestyles</h3>
+      <h3 class="cn">未来生活方式</h3>
+      <p class="en">How will we rest, connect, heal, consume, and celebrate in 2035? The answers require designers who can imagine new emotional rituals — mediated by AI, grounded in culture, and scaled through experience platforms. This is the design space <em>Feeling Futures</em> opens.</p>
+      <p class="cn">2035 年我们将如何休息、连接、疗愈、消费和庆祝？答案需要能够想象新情感仪式的设计师——以 AI 为媒介、扎根文化、通过体验平台规模化。这就是「感知未来」所开启的设计空间。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ Workshop Structure ═══════════ -->
+<section id="structure" class="fade-in">
+  <div class="section-label en">Workshop Architecture</div>
+  <div class="section-label cn">工作坊架构</div>
+
+  <h2 class="en">Three movements, five sessions — from sensing to making</h2>
+  <h2 class="cn">三个阶段，五次课程——从感知到创造</h2>
+
+  <p class="lead en">The workshop follows an emotional design methodology: begin with deep sensing, move through imaginative design, and arrive at tangible innovation. Each stage builds new muscles while respecting the creative strengths students already have.</p>
+  <p class="lead cn">工作坊遵循情感设计方法论：从深度感知开始，经历想象性设计，最终抵达可触摸的创新。每个阶段都在尊重学生已有创造力的基础上构建新能力。</p>
+
+  <div class="stages">
+    <!-- Stage 1 -->
+    <div class="stage">
+      <div class="stage-number en">Stage 01</div>
+      <div class="stage-number cn">阶段 01</div>
+      <h3 class="en">Sensing the Now</h3>
+      <h3 class="cn">感知当下</h3>
+      <div class="cn-sub en">感知当下</div>
+      <div class="cn-sub cn" style="font-family: var(--ff-serif); font-style: italic;">Sensing the Now</div>
+      <p class="en">Investigate the emotional texture of contemporary life. Map the feelings that technologies create, suppress, or transform. Build an emotional atlas of the present as the foundation for future design.</p>
+      <p class="cn">调查当代生活的情感肌理。映射技术所创造、压抑或转化的感受。构建当下的情感图谱，作为未来设计的基础。</p>
+      <ul class="session-list en">
+        <li><span class="session-tag">S1</span> Emotional Landscape Mapping — research methodologies for sensing cultural moods, unmet emotional needs, and emerging desire patterns</li>
+        <li><span class="session-tag">S2</span> AI Sensing Workshop — hands-on exploration of affective computing, sentiment analysis, and multimodal emotion recognition as design research tools</li>
+      </ul>
+      <ul class="session-list cn">
+        <li><span class="session-tag">S1</span> 情感图景绘制——感知文化情绪、未被满足的情感需求和新兴欲望模式的研究方法</li>
+        <li><span class="session-tag">S2</span> AI 感知工作坊——动手探索情感计算、情绪分析和多模态情感识别作为设计研究工具</li>
+      </ul>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="stage">
+      <div class="stage-number en">Stage 02</div>
+      <div class="stage-number cn">阶段 02</div>
+      <h3 class="en">Designing Future States</h3>
+      <h3 class="cn">设计未来状态</h3>
+      <div class="cn-sub en">设计未来状态</div>
+      <div class="cn-sub cn" style="font-family: var(--ff-serif); font-style: italic;">Designing Future States</div>
+      <p class="en">Transform emotional insights into speculative experience concepts. Learn to bridge visionary thinking with innovation structure — world-building meets value proposition.</p>
+      <p class="cn">将情感洞察转化为推测性体验概念。学习将远见思维与创新结构连接——世界构建遇见价值主张。</p>
+      <ul class="session-list en">
+        <li><span class="session-tag">S3</span> Experience Concept Design — scenario building, emotional journey mapping, and experience architecture for AI-mediated futures</li>
+        <li><span class="session-tag">S4</span> Innovation Structuring — framing concepts as innovation projects: user validation, impact modeling, and competition-ready narrative building</li>
+      </ul>
+      <ul class="session-list cn">
+        <li><span class="session-tag">S3</span> 体验概念设计——场景构建、情感旅程映射和 AI 介导未来的体验架构</li>
+        <li><span class="session-tag">S4</span> 创新结构化——将概念框架化为创新项目：用户验证、影响力建模和竞赛级叙事构建</li>
+      </ul>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="stage">
+      <div class="stage-number en">Stage 03</div>
+      <div class="stage-number cn">阶段 03</div>
+      <h3 class="en">Making It Real</h3>
+      <h3 class="cn">让它成真</h3>
+      <div class="cn-sub en">让它成真</div>
+      <div class="cn-sub cn" style="font-family: var(--ff-serif); font-style: italic;">Making It Real</div>
+      <p class="en">Bring concepts to life through rapid prototyping and pitch refinement. Produce outputs that work simultaneously as exhibition pieces, competition entries, and proof-of-concept demonstrations.</p>
+      <p class="cn">通过快速原型制作和路演打磨将概念变为现实。产出同时可作为展览作品、竞赛参赛作品和概念验证演示的成果。</p>
+      <ul class="session-list en">
+        <li><span class="session-tag">S5</span> Prototype Sprint + Final Pitch — build functional prototypes using AI tools, creative coding, and cross-media platforms. Present to guest critics in competition pitch format</li>
+      </ul>
+      <ul class="session-list cn">
+        <li><span class="session-tag">S5</span> 原型冲刺 + 终期路演——使用 AI 工具、创意编程和跨媒体平台构建功能原型。以竞赛路演形式向特邀评委展示</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Student Outcomes ═══════════ -->
+<div class="accent-band">
+  <section id="outcomes" class="fade-in">
+    <div class="section-label en">Student Outcomes</div>
+    <div class="section-label cn">学生成果</div>
+
+    <h2 class="en">Skills upgrade: from concept storytellers to experience innovators</h2>
+    <h2 class="cn">能力升级：从概念叙事者到体验创新者</h2>
+
+    <p class="lead en">Students already know how to feel and imagine. This workshop teaches them to structure, validate, and deliver — transforming poetic sensibility into competition-winning innovation.</p>
+    <p class="lead cn">学生们已经懂得如何感受和想象。这个工作坊教他们如何结构化、验证和交付——将诗性感知力转化为赢得竞赛的创新。</p>
+
+    <div class="outcomes-grid" style="margin-top: 3rem;">
+      <div class="outcome" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);">
+        <div class="marker" style="background: rgba(232, 86, 42, 0.15);">01</div>
+        <div>
+          <h4 class="en" style="color: white;">Emotional Research Methods</h4>
+          <h4 class="cn" style="color: white;">情感研究方法</h4>
+          <p class="en" style="color: rgba(255,255,255,0.6);">Move beyond intuition. Learn structured approaches to mapping emotional landscapes, identifying affective needs, and grounding creative concepts in real human insight.</p>
+          <p class="cn" style="color: rgba(255,255,255,0.6);">超越直觉。学习结构化方法来映射情感图景、识别情感需求，并将创意概念扎根于真实的人类洞察。</p>
+        </div>
+      </div>
+      <div class="outcome" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);">
+        <div class="marker" style="background: rgba(232, 86, 42, 0.15);">02</div>
+        <div>
+          <h4 class="en" style="color: white;">AI Prototyping Fluency</h4>
+          <h4 class="cn" style="color: white;">AI 原型制作能力</h4>
+          <p class="en" style="color: rgba(255,255,255,0.6);">Use generative AI, affective computing APIs, and creative coding as prototyping materials — not just as content generators, but as experience design mediums.</p>
+          <p class="cn" style="color: rgba(255,255,255,0.6);">将生成式 AI、情感计算 API 和创意编程作为原型材料——不仅仅是内容生成器，而是体验设计的媒介。</p>
+        </div>
+      </div>
+      <div class="outcome" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);">
+        <div class="marker" style="background: rgba(232, 86, 42, 0.15);">03</div>
+        <div>
+          <h4 class="en" style="color: white;">Innovation Project Structuring</h4>
+          <h4 class="cn" style="color: white;">创新项目结构化</h4>
+          <p class="en" style="color: rgba(255,255,255,0.6);">Frame creative concepts as innovation projects with clear value propositions, user validation logic, market positioning, and scalable impact narratives.</p>
+          <p class="cn" style="color: rgba(255,255,255,0.6);">将创意概念框架化为创新项目，具备清晰的价值主张、用户验证逻辑、市场定位和可规模化的影响力叙事。</p>
+        </div>
+      </div>
+      <div class="outcome" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);">
+        <div class="marker" style="background: rgba(232, 86, 42, 0.15);">04</div>
+        <div>
+          <h4 class="en" style="color: white;">Competition-Ready Communication</h4>
+          <h4 class="cn" style="color: white;">竞赛级表达能力</h4>
+          <p class="en" style="color: rgba(255,255,255,0.6);">Master the art of the innovation pitch: distilling visionary ideas into clear, compelling narratives for judges, investors, and cultural institutions.</p>
+          <p class="cn" style="color: rgba(255,255,255,0.6);">掌握创新路演的艺术：将远见卓识的想法提炼为面向评委、投资者和文化机构的清晰而有说服力的叙事。</p>
+        </div>
+      </div>
+      <div class="outcome" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);">
+        <div class="marker" style="background: rgba(232, 86, 42, 0.15);">05</div>
+        <div>
+          <h4 class="en" style="color: white;">Cross-Media Experience Design</h4>
+          <h4 class="cn" style="color: white;">跨媒体体验设计</h4>
+          <p class="en" style="color: rgba(255,255,255,0.6);">Design experiences that flow across app, space, VR, installation, and service — understanding how emotional continuity works across media boundaries.</p>
+          <p class="cn" style="color: rgba(255,255,255,0.6);">设计跨越应用、空间、VR、装置和服务的体验——理解情感连续性如何跨越媒介边界。</p>
+        </div>
+      </div>
+      <div class="outcome" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);">
+        <div class="marker" style="background: rgba(232, 86, 42, 0.15);">06</div>
+        <div>
+          <h4 class="en" style="color: white;">Cultural Innovation Thinking</h4>
+          <h4 class="cn" style="color: white;">文化创新思维</h4>
+          <p class="en" style="color: rgba(255,255,255,0.6);">Connect emotional design to larger cultural narratives — social impact, governance themes, and the "new economy" discourse that frames national innovation competitions.</p>
+          <p class="cn" style="color: rgba(255,255,255,0.6);">将情感设计与更大的文化叙事相连——社会影响、治理主题，以及框定国家级创新竞赛的「新经济」话语体系。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════ Project Types ═══════════ -->
+<section id="projects" class="fade-in">
+  <div class="section-label en">Project Territories</div>
+  <div class="section-label cn">项目方向</div>
+
+  <h2 class="en">Four domains where emotion meets innovation</h2>
+  <h2 class="cn">情感与创新交汇的四大领域</h2>
+
+  <p class="lead en">Each project territory represents a convergence of cultural need, technological possibility, and market opportunity. Teams choose one territory and develop a concept that is simultaneously an artwork and an innovation.</p>
+  <p class="lead cn">每个项目方向都代表着文化需求、技术可能性和市场机遇的交汇。团队选择一个方向，开发一个同时是艺术作品和创新项目的概念。</p>
+
+  <div class="projects-grid">
+    <div class="project-type">
+      <div class="type-label en">Territory 01</div>
+      <div class="type-label cn">方向 01</div>
+      <h3 class="en">AI Emotional Companions</h3>
+      <h3 class="cn">AI 情感伙伴</h3>
+      <p class="en">Design AI-driven companions that sense, respond to, and grow with human emotional states — moving beyond chatbots toward genuine affective relationships.</p>
+      <p class="cn">设计能感知、回应并与人类情感状态共同成长的 AI 伙伴——超越聊天机器人，走向真正的情感关系。</p>
+      <div class="examples en">
+        <span>Grief processing AI</span>
+        <span>Child emotional literacy</span>
+        <span>Elder care companions</span>
+        <span>Creative mood partners</span>
+      </div>
+      <div class="examples cn">
+        <span>哀伤疗愈 AI</span>
+        <span>儿童情感素养</span>
+        <span>老年关怀伙伴</span>
+        <span>创意情绪搭档</span>
+      </div>
+    </div>
+
+    <div class="project-type">
+      <div class="type-label en">Territory 02</div>
+      <div class="type-label cn">方向 02</div>
+      <h3 class="en">Immersive Consumption Experiences</h3>
+      <h3 class="cn">沉浸式消费体验</h3>
+      <p class="en">Reimagine retail, dining, and cultural consumption through AI-responsive environments that adapt to collective and individual emotional states in real time.</p>
+      <p class="cn">通过能实时适应集体和个人情感状态的 AI 响应式环境，重新想象零售、餐饮和文化消费。</p>
+      <div class="examples en">
+        <span>Mood-responsive retail</span>
+        <span>Emotional dining spaces</span>
+        <span>Adaptive cultural venues</span>
+        <span>Sensory commerce</span>
+      </div>
+      <div class="examples cn">
+        <span>情绪响应零售</span>
+        <span>情感餐饮空间</span>
+        <span>自适应文化场馆</span>
+        <span>感官商业</span>
+      </div>
+    </div>
+
+    <div class="project-type">
+      <div class="type-label en">Territory 03</div>
+      <div class="type-label cn">方向 03</div>
+      <h3 class="en">Urban Sensing Installations</h3>
+      <h3 class="cn">城市感知装置</h3>
+      <p class="en">Create public installations that make the emotional pulse of cities visible — transforming collective mood data into shared aesthetic and civic experiences.</p>
+      <p class="cn">创造公共装置，使城市的情感脉搏可见——将集体情绪数据转化为共享的美学与公民体验。</p>
+      <div class="examples en">
+        <span>City mood visualizations</span>
+        <span>Community emotion gardens</span>
+        <span>Transit wellbeing systems</span>
+        <span>Public healing spaces</span>
+      </div>
+      <div class="examples cn">
+        <span>城市情绪可视化</span>
+        <span>社区情感花园</span>
+        <span>出行幸福系统</span>
+        <span>公共疗愈空间</span>
+      </div>
+    </div>
+
+    <div class="project-type">
+      <div class="type-label en">Territory 04</div>
+      <div class="type-label cn">方向 04</div>
+      <h3 class="en">Digital Identity & Expression Platforms</h3>
+      <h3 class="cn">数字身份与表达平台</h3>
+      <p class="en">Build platforms where AI helps people understand, express, and share their emotional identities — new forms of digital selfhood beyond social media performance.</p>
+      <p class="cn">构建 AI 帮助人们理解、表达和分享情感身份的平台——超越社交媒体表演的新数字自我形式。</p>
+      <div class="examples en">
+        <span>Emotional avatars</span>
+        <span>Mood-based communities</span>
+        <span>Affective portfolios</span>
+        <span>Inner-world mapping</span>
+      </div>
+      <div class="examples cn">
+        <span>情感化身</span>
+        <span>情绪社区</span>
+        <span>情感档案</span>
+        <span>内心世界映射</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ Deliverables ═══════════ -->
+<section id="deliverables" class="fade-in">
+  <div class="section-label en">Final Deliverables</div>
+  <div class="section-label cn">最终交付物</div>
+
+  <h2 class="en">Three output formats — each serving a different stage</h2>
+  <h2 class="cn">三种产出形式——各服务于不同场景</h2>
+
+  <p class="lead en">Every team produces work that functions simultaneously as an exhibition piece, a competition entry, and a proof of concept. The deliverables are designed to travel across contexts.</p>
+  <p class="lead cn">每个团队产出的作品同时可作为展览作品、竞赛参赛作品和概念验证。交付物被设计为可跨场景使用。</p>
+
+  <div class="deliverables-row">
+    <div class="deliverable-col">
+      <h3 class="en">Prototype</h3>
+      <h3 class="cn">原型</h3>
+
+      <div class="del-item">
+        <h4 class="en">Functional Experience Demo</h4>
+        <h4 class="cn">功能体验演示</h4>
+        <p class="en">A working prototype that demonstrates the core emotional interaction — built with AI APIs, creative coding (p5.js, TouchDesigner), Figma, or VR tools.</p>
+        <p class="cn">一个展示核心情感交互的可工作原型——使用 AI API、创意编程（p5.js、TouchDesigner）、Figma 或 VR 工具构建。</p>
+      </div>
+      <div class="del-item">
+        <h4 class="en">Experience Video</h4>
+        <h4 class="cn">体验视频</h4>
+        <p class="en">A 2–3 minute video that shows the experience in context — how it feels to encounter, use, and be changed by the designed interaction.</p>
+        <p class="cn">一段 2-3 分钟的视频，展示体验在真实场景中的样子——遭遇、使用这个交互设计并被其改变的感受。</p>
+      </div>
+      <div class="del-item">
+        <h4 class="en">Technical Architecture</h4>
+        <h4 class="cn">技术架构</h4>
+        <p class="en">A clear diagram showing how the AI, sensing, and experience layers connect — demonstrating feasibility without requiring full engineering.</p>
+        <p class="cn">一张清晰的图表，展示 AI、感知和体验层如何连接——在不需要完整工程的情况下证明可行性。</p>
+      </div>
+    </div>
+
+    <div class="deliverable-col">
+      <h3 class="en">Pitch</h3>
+      <h3 class="cn">路演</h3>
+
+      <div class="del-item">
+        <h4 class="en">Innovation Pitch Deck</h4>
+        <h4 class="cn">创新路演文稿</h4>
+        <p class="en">8–12 slides following competition standards: problem, insight, concept, user validation, prototype, impact model, and team positioning.</p>
+        <p class="cn">8-12 页符合竞赛标准的演示文稿：问题、洞察、概念、用户验证、原型、影响力模型和团队定位。</p>
+      </div>
+      <div class="del-item">
+        <h4 class="en">One-Page Innovation Brief</h4>
+        <h4 class="cn">一页创新简报</h4>
+        <p class="en">A structured summary suitable for competition submissions: project title, team, problem statement, solution, innovation points, and social value.</p>
+        <p class="cn">适用于竞赛提交的结构化摘要：项目名称、团队、问题陈述、解决方案、创新点和社会价值。</p>
+      </div>
+      <div class="del-item">
+        <h4 class="en">Live Pitch Performance</h4>
+        <h4 class="cn">现场路演展示</h4>
+        <p class="en">A 5-minute presentation to guest critics, rehearsed in competition format with Q&A preparation.</p>
+        <p class="cn">面向特邀评委的 5 分钟展示，按竞赛形式排练并准备问答环节。</p>
+      </div>
+    </div>
+
+    <div class="deliverable-col">
+      <h3 class="en">Exhibition</h3>
+      <h3 class="cn">展览</h3>
+
+      <div class="del-item">
+        <h4 class="en">Installation / Spatial Piece</h4>
+        <h4 class="cn">装置 / 空间作品</h4>
+        <p class="en">A scaled exhibition-ready version of the prototype that can be experienced in a gallery or public space context.</p>
+        <p class="cn">原型的展览级版本，可在画廊或公共空间中被体验。</p>
+      </div>
+      <div class="del-item">
+        <h4 class="en">Process Documentation</h4>
+        <h4 class="cn">过程文档</h4>
+        <p class="en">Research wall, emotional journey maps, iteration artifacts — showing the design thinking behind the final work.</p>
+        <p class="cn">研究墙、情感旅程图、迭代工件——展示最终作品背后的设计思维。</p>
+      </div>
+      <div class="del-item">
+        <h4 class="en">Curatorial Statement</h4>
+        <h4 class="cn">策展陈述</h4>
+        <p class="en">A written piece positioning the project within the broader discourse of emotional futures, AI ethics, and cultural design.</p>
+        <p class="cn">一篇将项目置于情感未来、AI 伦理和文化设计更广泛话语中的文字陈述。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Timeline ═══════════ -->
+<section id="timeline" class="fade-in">
+  <div class="section-label en">Timeline</div>
+  <div class="section-label cn">时间线</div>
+
+  <h2 class="en">Five sessions across three weeks</h2>
+  <h2 class="cn">三周内的五次课程</h2>
+
+  <p class="lead en">A distributed sprint format that gives students time for deep research between sessions while maintaining creative momentum.</p>
+  <p class="lead cn">分布式冲刺形式，在保持创意势头的同时，给予学生课间深度研究的时间。</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">S1</div>
+      <div class="tl-content">
+        <div class="tl-phase en">Stage 01 · Sensing the Now</div>
+        <div class="tl-phase cn">阶段 01 · 感知当下</div>
+        <h4 class="en">Emotional Landscape Mapping</h4>
+        <h4 class="cn">情感图景绘制</h4>
+        <p class="en">Introduction to the emotional economy framework. Teams form around project territories. Begin field research using emotional mapping methodologies — observing, interviewing, and sensing the affective dimensions of everyday life.</p>
+        <p class="cn">引入情感经济框架。团队围绕项目方向组建。使用情感映射方法论开始田野调查——观察、访谈并感知日常生活的情感维度。</p>
+        <div class="tl-outputs en">
+          <span>Team formation</span>
+          <span>Territory selection</span>
+          <span>Research brief</span>
+          <span>Emotional atlas v1</span>
+        </div>
+        <div class="tl-outputs cn">
+          <span>团队组建</span>
+          <span>方向选择</span>
+          <span>研究简报</span>
+          <span>情感图谱 v1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">S2</div>
+      <div class="tl-content">
+        <div class="tl-phase en">Stage 01 · Sensing the Now</div>
+        <div class="tl-phase cn">阶段 01 · 感知当下</div>
+        <h4 class="en">AI Sensing Workshop</h4>
+        <h4 class="cn">AI 感知工作坊</h4>
+        <p class="en">Hands-on exploration of AI tools as research instruments: sentiment analysis, emotion recognition APIs, generative mood boards. Transform raw emotional research into structured design insights.</p>
+        <p class="cn">动手探索 AI 工具作为研究工具：情感分析、情绪识别 API、生成式情绪板。将原始情感研究转化为结构化的设计洞察。</p>
+        <div class="tl-outputs en">
+          <span>AI tool fluency</span>
+          <span>Emotional insight synthesis</span>
+          <span>Design opportunity statement</span>
+        </div>
+        <div class="tl-outputs cn">
+          <span>AI 工具熟练度</span>
+          <span>情感洞察综合</span>
+          <span>设计机会陈述</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">S3</div>
+      <div class="tl-content">
+        <div class="tl-phase en">Stage 02 · Designing Future States</div>
+        <div class="tl-phase cn">阶段 02 · 设计未来状态</div>
+        <h4 class="en">Experience Concept Design</h4>
+        <h4 class="cn">体验概念设计</h4>
+        <p class="en">Speculative design sprint: teams develop future emotional experience concepts through scenario building, journey mapping, and experience architecture. Concepts must balance poetic vision with user-centered logic.</p>
+        <p class="cn">推测性设计冲刺：团队通过场景构建、旅程映射和体验架构开发未来情感体验概念。概念必须平衡诗意愿景与以用户为中心的逻辑。</p>
+        <div class="tl-outputs en">
+          <span>Experience scenario</span>
+          <span>Emotional journey map</span>
+          <span>Concept sketch</span>
+          <span>Midterm review</span>
+        </div>
+        <div class="tl-outputs cn">
+          <span>体验场景</span>
+          <span>情感旅程图</span>
+          <span>概念草图</span>
+          <span>中期评审</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">S4</div>
+      <div class="tl-content">
+        <div class="tl-phase en">Stage 02 · Designing Future States</div>
+        <div class="tl-phase cn">阶段 02 · 设计未来状态</div>
+        <h4 class="en">Innovation Structuring</h4>
+        <h4 class="cn">创新结构化</h4>
+        <p class="en">Transform creative concepts into innovation project frameworks. Learn user validation methods, impact modeling, and competition narrative structures. Draft pitch decks and one-page briefs.</p>
+        <p class="cn">将创意概念转化为创新项目框架。学习用户验证方法、影响力建模和竞赛叙事结构。起草路演文稿和一页简报。</p>
+        <div class="tl-outputs en">
+          <span>Value proposition</span>
+          <span>User validation plan</span>
+          <span>Pitch deck draft</span>
+          <span>Innovation brief</span>
+        </div>
+        <div class="tl-outputs cn">
+          <span>价值主张</span>
+          <span>用户验证计划</span>
+          <span>路演文稿草案</span>
+          <span>创新简报</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">S5</div>
+      <div class="tl-content">
+        <div class="tl-phase en">Stage 03 · Making It Real</div>
+        <div class="tl-phase cn">阶段 03 · 让它成真</div>
+        <h4 class="en">Prototype Sprint + Final Pitch</h4>
+        <h4 class="cn">原型冲刺 + 终期路演</h4>
+        <p class="en">Intensive build session: functional prototypes, experience videos, and exhibition-ready outputs. Day concludes with formal pitch presentations to a panel of guest critics and industry reviewers.</p>
+        <p class="cn">密集构建环节：功能原型、体验视频和展览级产出。当天以向特邀评委和行业评审团的正式路演展示收尾。</p>
+        <div class="tl-outputs en">
+          <span>Working prototype</span>
+          <span>Experience video</span>
+          <span>Final pitch</span>
+          <span>Exhibition piece</span>
+          <span>Process documentation</span>
+        </div>
+        <div class="tl-outputs cn">
+          <span>可工作原型</span>
+          <span>体验视频</span>
+          <span>终期路演</span>
+          <span>展览作品</span>
+          <span>过程文档</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ Faculty Value ═══════════ -->
+<section id="value" class="fade-in">
+  <div class="section-label en">Institutional Value</div>
+  <div class="section-label cn">院系价值</div>
+
+  <h2 class="en">How this workshop advances the department's strategic evolution</h2>
+  <h2 class="cn">本工作坊如何推动院系的战略升级</h2>
+
+  <p class="lead en">Feeling Futures is designed not as an isolated event but as a catalyst — a model for how Art & Technology education can evolve toward innovation relevance without losing its creative soul.</p>
+  <p class="lead cn">「感知未来」不是一次孤立的活动，而是一个催化剂——一个艺术与科技教育如何在不失创造灵魂的前提下向创新方向演进的模型。</p>
+
+  <div class="value-grid">
+    <div class="value-item">
+      <h4 class="en">From Exhibition to Competition</h4>
+      <h4 class="cn">从展览到竞赛</h4>
+      <p class="en">Students learn to frame their creative work as innovation projects — gaining the structural fluency needed for national competitions like Internet+, Challenge Cup, and international design innovation awards.</p>
+      <p class="cn">学生学会将创意作品框架化为创新项目——获得参加互联网+、挑战杯等国家级竞赛和国际设计创新奖项所需的结构化表达能力。</p>
+    </div>
+    <div class="value-item">
+      <h4 class="en">AI Integration with Integrity</h4>
+      <h4 class="cn">有灵魂的 AI 融合</h4>
+      <p class="en">Rather than treating AI as a technical add-on, this workshop positions AI as a design material — teaching students to use it with the same intentionality they bring to any creative medium.</p>
+      <p class="cn">不是将 AI 视为技术附加物，而是将其定位为设计材料——教学生以对待任何创作媒介相同的意图性来使用 AI。</p>
+    </div>
+    <div class="value-item">
+      <h4 class="en">New Economy Alignment</h4>
+      <h4 class="cn">新经济对齐</h4>
+      <p class="en">The emotional economy framing directly connects to national strategic priorities: cultural governance, experience economy development, AI+ industry themes, and future lifestyle innovation.</p>
+      <p class="cn">情感经济框架直接对接国家战略优先方向：文化治理、体验经济发展、AI+ 产业主题和未来生活方式创新。</p>
+    </div>
+    <div class="value-item">
+      <h4 class="en">Replicable Methodology</h4>
+      <h4 class="cn">可复制的方法论</h4>
+      <p class="en">The three-stage framework (Sensing → Designing → Making) can become a department-wide methodology for future courses, workshops, and studio projects — building institutional capacity beyond this single event.</p>
+      <p class="cn">三阶段框架（感知 → 设计 → 创造）可成为院系层面的方法论，应用于未来的课程、工作坊和工作室项目——超越单次活动构建机构能力。</p>
+    </div>
+    <div class="value-item">
+      <h4 class="en">International Positioning</h4>
+      <h4 class="cn">国际定位</h4>
+      <p class="en">As a joint workshop with international partners, Feeling Futures positions the department within a global discourse on emotional AI and experience design — building networks for future collaboration and exchange.</p>
+      <p class="cn">作为与国际合作伙伴的联合工作坊，「感知未来」将院系置于情感 AI 和体验设计的全球话语中——为未来合作与交流构建网络。</p>
+    </div>
+    <div class="value-item">
+      <h4 class="en">Cross-Media Output Portfolio</h4>
+      <h4 class="cn">跨媒体产出组合</h4>
+      <p class="en">Student work produced in this workshop can simultaneously serve as exhibition pieces, competition entries, portfolio projects, and research artifacts — maximizing the value of every project produced.</p>
+      <p class="cn">工作坊产出的学生作品可同时作为展览作品、竞赛参赛作品、作品集项目和研究成果——最大化每个项目的价值。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<div class="cta-section fade-in">
+  <div class="section-label en" style="justify-content: center;">Next Steps</div>
+  <div class="section-label cn" style="justify-content: center;">下一步</div>
+
+  <h2 class="en">Let's design the future together</h2>
+  <h2 class="cn">让我们一起设计未来</h2>
+
+  <p class="en">Feeling Futures is ready to be shaped to your department's specific context, calendar, and strategic goals. We welcome the conversation.</p>
+  <p class="cn">「感知未来」已准备好根据贵院系的具体情境、时间安排和战略目标进行调整。我们期待对话的开始。</p>
+
+  <a href="#" class="cta-btn en">Begin the Conversation</a>
+  <a href="#" class="cta-btn cn">开启对话</a>
+</div>
+
+<!-- ═══════════ Footer ═══════════ -->
+<footer>
+  <div>Feeling Futures 感知未来 — Designing Emotional Experiences in the AI Economy</div>
+  <div class="foot-cn">感知未来 — 在人工智能经济中设计情感体验</div>
+  <div style="margin-top: 0.75rem; opacity: 0.6;">International Joint Workshop Proposal · 国际联合工作坊提案 · 2026</div>
+</footer>
+
+<!-- ═══════════ Scripts ═══════════ -->
+<script>
+  // Language Toggle
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang === 'cn' ? 'zh-CN' : 'en');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-cn').classList.toggle('active', lang === 'cn');
+    localStorage.setItem('ff-lang', lang);
+  }
+
+  // Restore saved language preference
+  const saved = localStorage.getItem('ff-lang');
+  if (saved) setLang(saved);
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -18,7 +18,6 @@
       --paper: #f3ece5; --stone: #7d706a;
       --warm-dark: #3a2e2a; --warm-deep: #2a2120;
       --glass: rgba(255,255,255,0.25); --glass-border: rgba(255,255,255,0.3);
-      --glass-strong: rgba(255,255,255,0.45);
       --ff-display: 'Space Grotesk', 'Noto Sans SC', sans-serif;
       --ff-body: 'Inter', -apple-system, sans-serif;
       --ff-cn: 'Noto Serif SC', serif;
@@ -26,7 +25,6 @@
     }
 
     html { scroll-behavior: smooth; font-size: 16px; }
-
     body {
       font-family: var(--ff-body); color: var(--ink);
       background: var(--paper); line-height: 1.7;
@@ -41,489 +39,324 @@
     [data-lang="cn"] h1, [data-lang="cn"] h2, [data-lang="cn"] h3,
     [data-lang="cn"] blockquote, [data-lang="cn"] .logo { font-family: var(--ff-cn-sans); }
 
-    /* ═══ Mouse Warm Glow ═══ */
     #cursor-glow {
       position: fixed; width: 600px; height: 600px;
       border-radius: 50%; pointer-events: none; z-index: 1;
-      background: radial-gradient(circle,
-        rgba(232, 180, 168, 0.12) 0%,
-        rgba(212, 136, 126, 0.06) 40%,
-        transparent 70%
-      );
-      transform: translate(-50%, -50%);
-      transition: left 0.3s ease-out, top 0.3s ease-out;
-      mix-blend-mode: normal;
+      background: radial-gradient(circle, rgba(232,180,168,0.12) 0%, rgba(212,136,126,0.06) 40%, transparent 70%);
+      transform: translate(-50%, -50%); transition: left 0.3s ease-out, top 0.3s ease-out;
     }
 
-    /* ═══ Blobs ═══ */
     .blob {
       position: absolute; border-radius: 50%;
       pointer-events: none; z-index: 0; filter: blur(100px);
     }
-    .blob-rose   { background: rgba(212, 136, 126, 0.22); }
-    .blob-peach  { background: rgba(240, 201, 184, 0.3); }
-    .blob-blush  { background: rgba(242, 215, 200, 0.35); }
-    .blob-skin   { background: rgba(201, 169, 152, 0.25); }
-    .blob-flush  { background: rgba(200, 112, 104, 0.12); }
-    .blob-gold   { background: rgba(212, 165, 116, 0.2); }
+    .blob-rose { background: rgba(212,136,126,0.22); }
+    .blob-peach { background: rgba(240,201,184,0.3); }
+    .blob-blush { background: rgba(242,215,200,0.35); }
+    .blob-gold { background: rgba(212,165,116,0.2); }
+    .blob-flush { background: rgba(200,112,104,0.12); }
 
-    @keyframes breathe {
-      0%, 100% { transform: scale(1) translate(0, 0); }
-      50% { transform: scale(1.1) translate(12px, -12px); }
-    }
-    @keyframes breathe2 {
-      0%, 100% { transform: scale(1) translate(0, 0); }
-      50% { transform: scale(1.15) translate(-10px, 10px); }
-    }
-    @keyframes drift {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(20px, -15px) rotate(2deg); }
-      66% { transform: translate(-10px, 10px) rotate(-1deg); }
-    }
-    @keyframes shimmer {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-    @keyframes gradient-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes float-up {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes breathe { 0%,100%{transform:scale(1) translate(0,0)} 50%{transform:scale(1.1) translate(12px,-12px)} }
+    @keyframes breathe2 { 0%,100%{transform:scale(1) translate(0,0)} 50%{transform:scale(1.15) translate(-10px,10px)} }
+    @keyframes drift { 0%,100%{transform:translate(0,0) rotate(0)} 33%{transform:translate(20px,-15px) rotate(2deg)} 66%{transform:translate(-10px,10px) rotate(-1deg)} }
+    @keyframes gradient-shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes float-up { 0%{opacity:0;transform:translateY(30px)} 100%{opacity:1;transform:translateY(0)} }
+    @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(212,136,126,0.3)} 70%{box-shadow:0 0 0 12px rgba(212,136,126,0)} 100%{box-shadow:0 0 0 0 rgba(212,136,126,0)} }
 
     .blob-animate { animation: breathe 8s ease-in-out infinite; }
     .blob-animate-alt { animation: breathe2 10s ease-in-out infinite; }
     .blob-drift { animation: drift 14s ease-in-out infinite; }
-
-    /* ═══ Glass Card ═══ */
-    .glass {
-      background: var(--glass);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-    }
-
-    .glass-strong {
-      background: var(--glass-strong);
-      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 20px;
-    }
-
-    /* ═══ Visual Break (CSS gradient art) ═══ */
-    .visual-break {
-      position: relative; width: 100%;
-      height: 50vh; min-height: 360px;
-      overflow: hidden;
-    }
-
-    .visual-break .vb-art {
-      position: absolute; inset: 0;
-    }
-
-    .visual-break .vb-art .vb-layer {
-      position: absolute; border-radius: 50%;
-      filter: blur(120px);
-    }
-    .visual-break .vb-art .vb-layer.animate {
-      animation: breathe 12s ease-in-out infinite;
-    }
-
-    /* Theme 1: Warm touch — soft peach/rose organic cloud */
-    .vb-theme-touch {
-      background: radial-gradient(ellipse 120% 100% at 30% 50%, #f0c9b8, #e8c4b8 30%, #ddb8a8 55%, #d4ac9a 80%, #c9a998);
-    }
-    .vb-theme-touch .vb-l1 { width: 80%; height: 120%; top: -20%; left: -10%;
-      background: radial-gradient(ellipse at 40% 50%, rgba(240,201,184,0.7) 0%, rgba(232,180,168,0.4) 35%, transparent 70%); }
-    .vb-theme-touch .vb-l2 { width: 70%; height: 100%; bottom: -25%; right: -15%;
-      background: radial-gradient(ellipse at 60% 50%, rgba(212,165,116,0.35) 0%, rgba(200,150,130,0.2) 40%, transparent 75%);
-      animation: breathe2 14s ease-in-out infinite; }
-    .vb-theme-touch .vb-l3 { width: 50%; height: 80%; top: 10%; left: 35%;
-      background: radial-gradient(ellipse at 50% 50%, rgba(245,235,227,0.5) 0%, transparent 65%);
-      animation: drift 16s ease-in-out infinite; }
-    .vb-theme-touch .vb-l4 { width: 40%; height: 60%; top: -5%; right: 10%;
-      background: radial-gradient(circle, rgba(212,136,126,0.25) 0%, transparent 60%);
-      animation: breathe 18s ease-in-out infinite; }
-
-    /* Theme 2: Golden warmth — amber/honey organic light */
-    .vb-theme-light {
-      background: radial-gradient(ellipse 130% 100% at 70% 40%, #f0c9b8, #e8c0ad 25%, #ddb5a0 50%, #d4a990 75%, #cca088);
-    }
-    .vb-theme-light .vb-l1 { width: 90%; height: 130%; top: -30%; right: -20%;
-      background: radial-gradient(ellipse at 55% 45%, rgba(240,210,190,0.65) 0%, rgba(220,180,160,0.3) 40%, transparent 70%); }
-    .vb-theme-light .vb-l2 { width: 60%; height: 90%; bottom: -10%; left: -5%;
-      background: radial-gradient(ellipse at 40% 60%, rgba(212,165,116,0.4) 0%, rgba(200,155,120,0.15) 45%, transparent 75%);
-      animation: breathe2 15s ease-in-out infinite; }
-    .vb-theme-light .vb-l3 { width: 55%; height: 70%; top: 15%; left: 25%;
-      background: radial-gradient(ellipse at 50% 50%, rgba(250,240,230,0.45) 0%, transparent 60%);
-      animation: drift 18s ease-in-out infinite; }
-    .vb-theme-light .vb-l4 { width: 45%; height: 65%; bottom: 5%; right: 20%;
-      background: radial-gradient(circle, rgba(200,112,104,0.15) 0%, transparent 55%);
-      animation: breathe 20s ease-in-out infinite; }
-
-    /* Theme 3: Deeper rose — creative warmth */
-    .vb-theme-create {
-      background: radial-gradient(ellipse 110% 100% at 50% 55%, #d4a090, #c89888 25%, #c09080 50%, #b88878 75%, #b08070);
-    }
-    .vb-theme-create .vb-l1 { width: 75%; height: 110%; top: -15%; left: 15%;
-      background: radial-gradient(ellipse at 45% 45%, rgba(232,180,168,0.55) 0%, rgba(220,170,155,0.25) 40%, transparent 70%); }
-    .vb-theme-create .vb-l2 { width: 65%; height: 95%; bottom: -20%; right: 0;
-      background: radial-gradient(ellipse at 55% 55%, rgba(212,165,116,0.3) 0%, rgba(200,150,110,0.12) 45%, transparent 70%);
-      animation: breathe2 13s ease-in-out infinite; }
-    .vb-theme-create .vb-l3 { width: 50%; height: 75%; top: 5%; right: 25%;
-      background: radial-gradient(ellipse at 50% 50%, rgba(245,230,220,0.35) 0%, transparent 60%);
-      animation: drift 15s ease-in-out infinite; }
-    .vb-theme-create .vb-l4 { width: 40%; height: 55%; bottom: 10%; left: 5%;
-      background: radial-gradient(circle, rgba(180,100,90,0.2) 0%, transparent 55%);
-      animation: breathe 17s ease-in-out infinite; }
-
-    .visual-break .vb-edge-top {
-      position: absolute; top: 0; left: 0; right: 0; height: 100px;
-      background: linear-gradient(180deg, var(--paper) 0%, transparent 100%);
-      z-index: 1;
-    }
-    .visual-break .vb-edge-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
-      background: linear-gradient(0deg, var(--paper) 0%, transparent 100%);
-      z-index: 1;
-    }
-
-    .visual-break .vb-glass {
-      position: absolute; bottom: 3rem; left: 3rem; right: 3rem;
-      padding: 2rem 2.5rem; z-index: 2;
-      background: rgba(42, 33, 32, 0.45);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 16px;
-      color: #fff;
-    }
-
-    .visual-break .vb-glass h3 {
-      font-family: var(--ff-display);
-      font-size: 1.5rem; font-weight: 700;
-      letter-spacing: -0.01em; margin-bottom: 0.3rem;
-      color: #fff;
-    }
-
-    .visual-break .vb-glass p {
-      font-size: 0.95rem; opacity: 0.85; font-weight: 400;
-      color: rgba(255,255,255,0.85);
-    }
 
     /* ═══ Nav ═══ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.1rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(243, 236, 229, 0.6);
+      background: rgba(243,236,229,0.6);
       backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
       border-bottom: 1px solid rgba(255,255,255,0.3);
     }
-
-    nav .logo {
-      font-family: var(--ff-display);
-      font-size: 1.1rem; font-weight: 700;
-      letter-spacing: -0.01em; color: var(--ink);
-    }
-    nav .logo span {
-      font-family: var(--ff-cn-sans); font-weight: 400;
-      margin-left: 0.5rem; color: var(--stone); font-size: 0.95rem;
-    }
+    nav .logo { font-family: var(--ff-display); font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+    nav .logo span { font-family: var(--ff-cn-sans); font-weight: 400; margin-left: 0.5rem; color: var(--stone); font-size: 0.95rem; }
     nav .nav-right { display: flex; align-items: center; gap: 2rem; }
     nav ul { list-style: none; display: flex; gap: 1.8rem; }
-    nav a {
-      text-decoration: none; color: var(--stone);
-      font-size: 0.875rem; font-weight: 500;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      transition: color 0.25s;
-    }
+    nav a { text-decoration: none; color: var(--stone); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.25s; }
     nav a:hover { color: var(--ink); }
-    .lang-toggle {
-      display: flex; background: rgba(255,255,255,0.35);
-      backdrop-filter: blur(12px); border-radius: 100px;
-      padding: 3px; border: 1px solid rgba(255,255,255,0.3);
-    }
-    .lang-toggle button {
-      border: none; background: transparent;
-      padding: 0.35rem 0.85rem; font-size: 0.875rem;
-      font-weight: 600; color: var(--stone); cursor: pointer;
-      border-radius: 100px; transition: all 0.25s;
-      font-family: var(--ff-display);
-    }
-    .lang-toggle button.active {
-      background: rgba(255,255,255,0.7); color: var(--ink);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
+    .lang-toggle { display: flex; background: rgba(255,255,255,0.35); backdrop-filter: blur(12px); border-radius: 100px; padding: 3px; border: 1px solid rgba(255,255,255,0.3); }
+    .lang-toggle button { border: none; background: transparent; padding: 0.35rem 0.85rem; font-size: 0.875rem; font-weight: 600; color: var(--stone); cursor: pointer; border-radius: 100px; transition: all 0.25s; font-family: var(--ff-display); }
+    .lang-toggle button.active { background: rgba(255,255,255,0.7); color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
 
-    /* ═══ Sections ═══ */
+    /* ═══ Common ═══ */
     section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
-
-    .section-label {
-      font-family: var(--ff-display);
-      font-size: 0.875rem; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--rose); margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
+    .section-label { font-family: var(--ff-display); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
     .section-label::before { content: ''; width: 2rem; height: 2px; background: var(--rose); }
-
-    h2 {
-      font-family: var(--ff-display);
-      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700;
-      line-height: 1.12; margin-bottom: 1.5rem; max-width: 720px;
-      letter-spacing: -0.025em;
-    }
-    h3 {
-      font-family: var(--ff-display);
-      font-size: 1.45rem; font-weight: 600;
-      line-height: 1.3; margin-bottom: 0.85rem; letter-spacing: -0.01em;
-    }
+    h2 { font-family: var(--ff-display); font-size: clamp(2rem,4vw,3.2rem); font-weight: 700; line-height: 1.12; margin-bottom: 1.5rem; max-width: 720px; letter-spacing: -0.025em; }
+    h3 { font-family: var(--ff-display); font-size: 1.45rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.85rem; }
     p.lead { font-size: 1.1rem; line-height: 1.85; color: var(--stone); max-width: 640px; }
+    .warm-band { position: relative; overflow: hidden; }
+    .warm-band--blush { background: linear-gradient(160deg, var(--skin-1) 0%, var(--skin-2) 40%, var(--peach) 80%, var(--skin-1) 100%); }
+    .warm-band--deep { background: linear-gradient(160deg, var(--warm-deep), #3a2825 30%, #4d3530 60%, #3a2825 100%); color: var(--skin-1); }
+    .warm-band--rose { background: linear-gradient(160deg, var(--skin-1) 0%, var(--skin-3) 30%, var(--blush) 60%, var(--peach) 100%); }
+    .warm-band--deep .section-label { color: var(--blush); }
+    .warm-band--deep .section-label::before { background: var(--blush); }
+    .warm-band--deep h2 { color: var(--skin-1); }
+    .warm-band--deep p.lead { color: var(--skin-5); }
+    .divider { width: 40px; height: 3px; background: linear-gradient(90deg, var(--rose), var(--gold)); margin: 4rem auto; opacity: 0.5; border-radius: 2px; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ═══ Hero ═══ */
     .hero-wrap {
       position: relative; overflow: hidden; min-height: 100vh;
       background: linear-gradient(160deg, var(--paper) 0%, var(--skin-2) 25%, var(--skin-3) 50%, var(--blush) 75%, var(--skin-4) 100%);
-      background-size: 300% 300%;
-      animation: gradient-shift 12s ease infinite;
+      background-size: 300% 300%; animation: gradient-shift 12s ease infinite;
     }
-
     .hero {
-      min-height: 100vh; display: grid;
-      grid-template-columns: 1fr 1fr; align-items: center;
-      gap: 4rem; padding: 8rem 3rem 6rem;
-      max-width: 1400px; margin: 0 auto;
-      position: relative; z-index: 2;
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 4rem; padding: 8rem 3rem 6rem;
+      max-width: 1400px; margin: 0 auto; position: relative; z-index: 2;
     }
     .hero-content { display: flex; flex-direction: column; align-items: flex-start; }
-    .hero-poster { display: flex; align-items: center; justify-content: center; position: relative; }
+    .hero-poster { display: flex; align-items: center; justify-content: center; }
     .hero-poster img {
-      width: 100%; max-width: 440px; height: auto;
-      border-radius: 12px;
-      box-shadow: 0 30px 100px rgba(42, 33, 32, 0.2), 0 4px 20px rgba(42, 33, 32, 0.08);
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      width: 100%; max-width: 440px; height: auto; border-radius: 12px;
+      box-shadow: 0 30px 100px rgba(42,33,32,0.2), 0 4px 20px rgba(42,33,32,0.08);
+      transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
     }
-    .hero-poster img:hover { transform: translateY(-6px) scale(1.01) rotate(-0.5deg); }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; padding-top: 7rem; }
-      .hero-poster { order: -1; }
-      .hero-poster img { max-width: 280px; }
-    }
-
-    .hero-overline {
-      font-family: var(--ff-display); font-size: 0.875rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--skin-6); margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-family: var(--ff-display);
-      font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 700;
-      line-height: 0.95; margin-bottom: 0.4rem; letter-spacing: -0.04em;
-    }
-    [data-lang="cn"] .hero h1 { font-weight: 700; letter-spacing: 0.02em; }
-    .hero .cn-title {
-      font-family: var(--ff-cn-sans);
-      font-size: clamp(1.5rem, 2.5vw, 2.2rem); font-weight: 400;
-      color: var(--stone); margin-bottom: 1.8rem; letter-spacing: 0.08em;
-    }
+    .hero-poster img:hover { transform: translateY(-6px) scale(1.01); }
+    .hero-overline { font-family: var(--ff-display); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--skin-6); margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--ff-display); font-size: clamp(3.5rem,7vw,6.5rem); font-weight: 700; line-height: 0.95; margin-bottom: 0.4rem; letter-spacing: -0.04em; }
+    [data-lang="cn"] .hero h1 { letter-spacing: 0.02em; }
+    .hero .cn-title { font-family: var(--ff-cn-sans); font-size: clamp(1.5rem,2.5vw,2.2rem); font-weight: 400; color: var(--stone); margin-bottom: 1.8rem; letter-spacing: 0.08em; }
     [data-lang="cn"] .hero .cn-title { font-family: var(--ff-display); letter-spacing: -0.02em; }
-    .hero .subtitle {
-      font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--stone);
-      margin-bottom: 2.5rem; max-width: 460px; line-height: 1.7;
+    .hero .subtitle { font-size: clamp(1rem,1.6vw,1.15rem); color: var(--stone); margin-bottom: 2.5rem; max-width: 460px; line-height: 1.7; }
+    .hero-meta { display: flex; gap: 1.8rem; flex-wrap: wrap; font-size: 0.875rem; color: var(--stone); border-top: 2px solid rgba(0,0,0,0.06); padding-top: 1.5rem; }
+    .hero-meta dt { font-family: var(--ff-display); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.2rem; }
+
+    /* ═══ At a Glance ═══ */
+    .glance-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      background: var(--warm-deep); position: relative; z-index: 2;
     }
-    .hero-meta {
-      display: flex; gap: 1.8rem; flex-wrap: wrap; font-size: 0.875rem;
-      color: var(--stone); border-top: 2px solid rgba(0,0,0,0.06); padding-top: 1.5rem;
+    .glance-item {
+      padding: 2.5rem 2rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.3s;
     }
-    .hero-meta dt {
-      font-family: var(--ff-display); font-size: 0.875rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.2rem;
+    .glance-item:hover { background: rgba(255,255,255,0.03); }
+    .glance-item:last-child { border-right: none; }
+    .glance-num { font-family: var(--ff-display); font-size: 2.5rem; font-weight: 700; color: var(--blush); line-height: 1; margin-bottom: 0.5rem; }
+    .glance-label { font-size: 0.875rem; color: var(--skin-4); font-weight: 500; }
+    @media (max-width: 768px) { .glance-strip { grid-template-columns: repeat(2, 1fr); } .glance-item { border-bottom: 1px solid rgba(255,255,255,0.06); } }
+
+    /* ═══ Process Flow (horizontal visual) ═══ */
+    .process-flow {
+      display: flex; align-items: stretch; gap: 0; margin-top: 3rem;
+      position: relative;
+    }
+    .process-flow::after {
+      content: ''; position: absolute; top: 50%; left: 60px; right: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--peach), var(--rose), var(--flush));
+      z-index: 0; transform: translateY(-50%);
+    }
+    .pf-stage {
+      flex: 1; position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .pf-circle {
+      width: 100px; height: 100px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      font-family: var(--ff-display); font-weight: 700;
+      margin-bottom: 1.2rem; position: relative;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .pf-circle:hover { transform: scale(1.08); }
+    .pf-stage:nth-child(1) .pf-circle { background: rgba(240,201,184,0.6); color: var(--warm-dark); }
+    .pf-stage:nth-child(2) .pf-circle { background: rgba(232,180,168,0.6); color: var(--warm-dark); }
+    .pf-stage:nth-child(3) .pf-circle { background: rgba(212,136,126,0.6); color: white; }
+    .pf-circle .pf-icon { font-size: 1.8rem; line-height: 1; }
+    .pf-circle .pf-num { font-size: 0.75rem; letter-spacing: 0.1em; opacity: 0.7; }
+    .pf-name { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .pf-sessions { font-size: 0.875rem; color: var(--stone); }
+    .pf-arrow {
+      position: absolute; top: 50px; right: -18px; z-index: 2;
+      width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--rose);
+    }
+    .pf-stage:last-child .pf-arrow { display: none; }
+    @media (max-width: 768px) {
+      .process-flow { flex-direction: column; gap: 1.5rem; }
+      .process-flow::after { display: none; }
+      .pf-arrow { display: none !important; }
     }
 
-    /* ═══ Curatorial ═══ */
-    .curatorial {
-      max-width: 760px; margin: 0 auto; text-align: center;
-      padding: 5rem 3rem; position: relative;
-    }
-    .curatorial blockquote {
-      font-weight: 300; font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-      line-height: 1.95; color: var(--ink-soft); position: relative; padding: 2rem 0;
-    }
-    .curatorial blockquote::before {
-      content: ''; display: block; width: 40px; height: 3px;
-      background: linear-gradient(90deg, var(--rose), var(--gold));
-      margin: 0 auto 2rem;
-    }
-    [data-lang="cn"] .curatorial blockquote { font-family: var(--ff-cn); font-weight: 400; }
-
-    /* ═══ Warm Bands ═══ */
-    .warm-band { position: relative; overflow: hidden; }
-    .warm-band--blush {
-      background: linear-gradient(160deg, var(--skin-1) 0%, var(--skin-2) 40%, var(--peach) 80%, var(--skin-1) 100%);
-    }
-    .warm-band--deep {
-      background: linear-gradient(160deg, var(--warm-deep), #3a2825 30%, #4d3530 60%, #3a2825 100%);
-      color: var(--skin-1);
-    }
-    .warm-band--rose {
-      background: linear-gradient(160deg, var(--skin-1) 0%, var(--skin-3) 30%, var(--blush) 60%, var(--peach) 100%);
-    }
-    .warm-band--deep .section-label { color: var(--blush); }
-    .warm-band--deep .section-label::before { background: var(--blush); }
-    .warm-band--deep h2 { color: var(--skin-1); }
-    .warm-band--deep p.lead { color: var(--skin-5); }
-
-    /* ═══ Why Cards ═══ */
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
-    .why-card {
-      padding: 2.5rem; border-radius: 20px; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative; overflow: hidden;
+    /* ═══ Session Detail Cards ═══ */
+    .session-cards { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3rem; }
+    .session-card {
+      display: grid; grid-template-columns: 80px 1fr 1fr 1fr;
+      gap: 0; border-radius: 20px; overflow: hidden;
       background: rgba(255,255,255,0.3);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.35);
-    }
-    .why-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(200,112,104,0.08); }
-    .why-card .num {
-      font-family: var(--ff-display); font-size: 3.5rem; font-weight: 700;
-      background: linear-gradient(135deg, var(--rose), var(--gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; line-height: 1; margin-bottom: 1rem;
-    }
-    .why-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
-    .why-card p { font-size: 0.95rem; color: var(--stone); line-height: 1.75; }
-
-    /* ═══ Stages ═══ */
-    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-    @media (max-width: 768px) { .stages { grid-template-columns: 1fr; } }
-    .stage {
-      padding: 2.5rem; border-radius: 20px; overflow: hidden; position: relative;
-      background: rgba(255,255,255,0.25);
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      border: 1px solid rgba(255,255,255,0.35);
+      transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
     }
-    .stage:hover { transform: translateY(-3px); box-shadow: 0 16px 50px rgba(0,0,0,0.04); }
-    .stage::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    }
-    .stage:nth-child(1)::before { background: linear-gradient(90deg, var(--peach), var(--blush)); }
-    .stage:nth-child(2)::before { background: linear-gradient(90deg, var(--blush), var(--rose)); }
-    .stage:nth-child(3)::before { background: linear-gradient(90deg, var(--rose), var(--flush)); }
-    .stage-number { font-family: var(--ff-display); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--rose); }
-    .stage h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
-    .stage .cn-sub { font-size: 0.95rem; color: var(--stone); margin-bottom: 1.2rem; font-style: italic; }
-    .stage p { font-size: 0.95rem; color: var(--stone); line-height: 1.75; margin-bottom: 1rem; }
-    .session-list { list-style: none; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1rem; }
-    .session-list li { font-size: 0.875rem; color: var(--stone); padding: 0.4rem 0; display: flex; align-items: baseline; gap: 0.5rem; line-height: 1.6; }
-    .session-list .session-tag { font-family: var(--ff-display); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em; min-width: 2.2rem; color: var(--flush); }
-
-    /* ═══ Outcomes ═══ */
-    .outcomes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
-    @media (max-width: 768px) { .outcomes-grid { grid-template-columns: 1fr; } }
-    .outcome {
-      display: flex; gap: 1.15rem; padding: 1.5rem;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px; align-items: flex-start;
-      transition: all 0.3s; backdrop-filter: blur(8px);
-    }
-    .outcome:hover { background: rgba(255,255,255,0.08); transform: translateX(4px); }
-    .outcome .marker {
-      width: 40px; height: 40px; border-radius: 12px;
-      background: linear-gradient(135deg, rgba(232,180,168,0.2), rgba(212,165,116,0.15));
+    .session-card:hover { transform: translateY(-3px); box-shadow: 0 16px 50px rgba(0,0,0,0.04); }
+    .sc-num {
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-family: var(--ff-display);
-      font-size: 0.875rem; font-weight: 700; color: var(--blush);
+      font-family: var(--ff-display); font-size: 1.1rem; font-weight: 700;
+      color: white; writing-mode: vertical-lr; text-orientation: mixed;
+      letter-spacing: 0.1em;
     }
-    .outcome h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--skin-1); }
-    .outcome p { font-size: 0.875rem; color: var(--skin-5); line-height: 1.65; }
+    .session-card:nth-child(1) .sc-num,
+    .session-card:nth-child(2) .sc-num { background: linear-gradient(180deg, var(--peach), var(--blush)); color: var(--warm-dark); }
+    .session-card:nth-child(3) .sc-num,
+    .session-card:nth-child(4) .sc-num { background: linear-gradient(180deg, var(--blush), var(--rose)); color: white; }
+    .session-card:nth-child(5) .sc-num { background: linear-gradient(180deg, var(--rose), var(--flush)); color: white; }
+    .sc-main { padding: 2rem; border-right: 1px solid rgba(0,0,0,0.04); }
+    .sc-main h4 { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .sc-main .sc-phase { font-size: 0.875rem; color: var(--rose); font-weight: 600; font-family: var(--ff-display); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .sc-main p { font-size: 0.875rem; color: var(--stone); line-height: 1.65; }
+    .sc-method { padding: 2rem; border-right: 1px solid rgba(0,0,0,0.04); }
+    .sc-method-title { font-size: 0.875rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; font-family: var(--ff-display); letter-spacing: 0.05em; text-transform: uppercase; }
+    .sc-method-list { list-style: none; }
+    .sc-method-list li {
+      font-size: 0.875rem; color: var(--stone); padding: 0.3rem 0;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .sc-method-list .method-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; flex-shrink: 0;
+      background: rgba(212,136,126,0.1);
+    }
+    .sc-output { padding: 2rem; }
+    .sc-output-title { font-size: 0.875rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; font-family: var(--ff-display); letter-spacing: 0.05em; text-transform: uppercase; }
+    .sc-output-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .sc-output-tags span {
+      font-size: 0.875rem; padding: 0.3rem 0.75rem;
+      background: rgba(212,136,126,0.1); border-radius: 100px;
+      color: var(--ink-soft); font-weight: 500;
+    }
+    @media (max-width: 900px) {
+      .session-card { grid-template-columns: 1fr; }
+      .sc-num { writing-mode: horizontal-tb; padding: 1rem; }
+      .sc-main, .sc-method, .sc-output { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.04); }
+    }
+
+    /* ═══ Teaching Methods Ribbon ═══ */
+    .methods-ribbon {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .method-card {
+      text-align: center; padding: 2rem 1.5rem;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 16px; transition: all 0.3s;
+    }
+    .method-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.04); }
+    .method-icon-lg {
+      width: 56px; height: 56px; border-radius: 16px; margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, rgba(240,201,184,0.4), rgba(212,136,126,0.2));
+    }
+    .method-card h4 { font-family: var(--ff-display); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .method-card p { font-size: 0.875rem; color: var(--stone); line-height: 1.5; }
+    @media (max-width: 768px) { .methods-ribbon { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ═══ Skills Before/After ═══ */
+    .skills-compare {
+      display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0;
+      margin-top: 2.5rem; align-items: start;
+    }
+    .skills-col { padding: 2.5rem; border-radius: 20px; }
+    .skills-before {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+    }
+    .skills-after {
+      background: rgba(232,180,168,0.1); border: 1px solid rgba(232,180,168,0.15);
+    }
+    .skills-arrow {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--blush); padding-top: 2.5rem;
+    }
+    .skills-col h4 {
+      font-family: var(--ff-display); font-size: 1rem; font-weight: 700;
+      margin-bottom: 1.2rem; padding-bottom: 0.8rem;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+    .skills-before h4 { color: var(--skin-5); }
+    .skills-after h4 { color: var(--blush); }
+    .skill-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.5rem 0; font-size: 0.875rem;
+    }
+    .skill-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .skills-before .skill-dot { background: var(--skin-5); }
+    .skills-after .skill-dot { background: var(--blush); }
+    .skills-before .skill-item { color: var(--skin-5); }
+    .skills-after .skill-item { color: var(--skin-2); }
+    @media (max-width: 768px) {
+      .skills-compare { grid-template-columns: 1fr; gap: 1rem; }
+      .skills-arrow { transform: rotate(90deg); padding: 0; }
+    }
 
     /* ═══ Project Types ═══ */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
     @media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } }
     .project-type {
       border-radius: 20px; position: relative; overflow: hidden;
-      min-height: 340px; display: flex; flex-direction: column;
-      justify-content: flex-end;
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end;
+      transition: transform 0.5s cubic-bezier(0.23,1,0.32,1);
     }
     .project-type:hover { transform: scale(1.015); }
     .project-type .pt-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      position: absolute; inset: 0; background-size: cover; background-position: center;
+      transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
     }
     .project-type:hover .pt-bg { transform: scale(1.06); }
     .project-type .pt-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg,
-        rgba(42,33,32,0.15) 0%,
-        rgba(42,33,32,0.5) 50%,
-        rgba(42,33,32,0.82) 100%
-      );
+      background: linear-gradient(180deg, rgba(42,33,32,0.1) 0%, rgba(42,33,32,0.5) 50%, rgba(42,33,32,0.85) 100%);
     }
-    .project-type .pt-content {
-      position: relative; z-index: 2; padding: 2.5rem;
-      color: white;
-    }
-    .project-type .type-label {
-      font-family: var(--ff-display); font-size: 0.875rem; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; margin-bottom: 0.6rem;
-    }
+    .project-type .pt-content { position: relative; z-index: 2; padding: 2.5rem; color: white; }
+    .project-type .type-label { font-family: var(--ff-display); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; margin-bottom: 0.6rem; }
     .project-type h3 { font-size: 1.4rem; color: white; margin-bottom: 0.6rem; }
     .project-type p { font-size: 0.95rem; opacity: 0.8; line-height: 1.7; }
     .project-type .examples { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .project-type .examples span {
-      font-size: 0.875rem; padding: 0.3rem 0.8rem;
-      background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
-      border-radius: 100px; border: 1px solid rgba(255,255,255,0.15);
-    }
+    .project-type .examples span { font-size: 0.875rem; padding: 0.3rem 0.8rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border-radius: 100px; border: 1px solid rgba(255,255,255,0.15); }
 
-    /* ═══ Deliverables ═══ */
-    .deliverables-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-    @media (max-width: 768px) { .deliverables-row { grid-template-columns: 1fr; } }
-    .deliverable-col {
-      padding: 2.5rem; border-radius: 20px;
+    /* ═══ Deliverables Visual ═══ */
+    .del-visual { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    @media (max-width: 768px) { .del-visual { grid-template-columns: 1fr; } }
+    .del-card {
+      border-radius: 20px; overflow: hidden;
       background: rgba(255,255,255,0.3);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255,255,255,0.35);
+      transition: all 0.3s;
     }
-    .deliverable-col h3 {
-      font-size: 1.1rem; margin-bottom: 1.25rem; padding-bottom: 0.85rem;
-      border-bottom: 2px solid var(--blush);
+    .del-card:hover { transform: translateY(-3px); box-shadow: 0 16px 50px rgba(0,0,0,0.04); }
+    .del-card-header {
+      padding: 2rem 2rem 1.5rem; text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
     }
-    .del-item { margin-bottom: 1.1rem; }
-    .del-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
-    .del-item p { font-size: 0.875rem; color: var(--stone); line-height: 1.6; }
-
-    /* ═══ Timeline ═══ */
-    .timeline { margin-top: 2.5rem; position: relative; }
-    .timeline::before {
-      content: ''; position: absolute; top: 0; bottom: 0; left: 24px; width: 2px;
-      background: linear-gradient(to bottom, var(--peach), var(--rose), var(--flush), var(--gold), var(--peach));
-    }
-    .tl-item { display: flex; gap: 1.8rem; padding: 1.5rem 0; position: relative; }
-    .tl-dot {
-      width: 50px; height: 50px; border-radius: 50%;
-      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
-      border: 2px solid var(--rose);
+    .del-card-header .del-icon {
+      width: 64px; height: 64px; border-radius: 20px; margin: 0 auto 1rem;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-family: var(--ff-display);
-      font-size: 0.875rem; font-weight: 700; z-index: 1; color: var(--flush);
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, rgba(240,201,184,0.4), rgba(212,136,126,0.2));
     }
-    .tl-content h4 { font-family: var(--ff-display); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.2rem; }
-    .tl-content .tl-phase { font-family: var(--ff-display); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--rose); }
-    .tl-content p { font-size: 0.95rem; color: var(--stone); line-height: 1.65; }
-    .tl-content .tl-outputs { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
-    .tl-content .tl-outputs span {
-      font-size: 0.875rem; padding: 0.25rem 0.65rem;
-      background: rgba(255,255,255,0.3); backdrop-filter: blur(6px);
-      border-radius: 6px; color: var(--ink-soft); font-weight: 500;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
+    .del-card-header h3 { font-size: 1.15rem; margin-bottom: 0; }
+    .del-card-body { padding: 1.5rem 2rem 2rem; }
+    .del-item { padding: 0.6rem 0; }
+    .del-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .del-item p { font-size: 0.875rem; color: var(--stone); line-height: 1.55; }
 
     /* ═══ Value ═══ */
     .value-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
@@ -531,12 +364,36 @@
     .value-item {
       padding: 2rem; border-left: 4px solid var(--rose);
       background: rgba(255,255,255,0.3); backdrop-filter: blur(12px);
-      border-radius: 0 16px 16px 0;
-      transition: all 0.3s;
+      border-radius: 0 16px 16px 0; transition: all 0.3s;
     }
     .value-item:hover { transform: translateX(4px); box-shadow: 0 8px 30px rgba(0,0,0,0.03); }
     .value-item h4 { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
     .value-item p { font-size: 0.95rem; color: var(--stone); line-height: 1.7; }
+
+    /* ═══ Flexible Formats ═══ */
+    .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    @media (max-width: 768px) { .formats-grid { grid-template-columns: 1fr; } }
+    .format-card {
+      padding: 2.5rem; border-radius: 20px; text-align: center;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.35);
+      transition: all 0.3s;
+    }
+    .format-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.04); }
+    .format-card.featured { border: 2px solid var(--rose); background: rgba(255,255,255,0.45); }
+    .format-badge {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+      background: var(--rose); color: white; margin-bottom: 1rem;
+      font-family: var(--ff-display); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .format-card h4 { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .format-duration { font-size: 0.95rem; color: var(--rose); font-weight: 600; margin-bottom: 1rem; }
+    .format-card p { font-size: 0.875rem; color: var(--stone); line-height: 1.65; text-align: left; }
+    .format-features { list-style: none; margin-top: 1rem; text-align: left; }
+    .format-features li { font-size: 0.875rem; color: var(--stone); padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem; }
+    .format-features li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
 
     /* ═══ CTA ═══ */
     .cta-wrap {
@@ -553,12 +410,9 @@
       text-decoration: none; font-family: var(--ff-display);
       font-size: 0.875rem; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; border-radius: 100px;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
     }
-    .cta-btn:hover {
-      background: var(--flush); color: white;
-      transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,112,104,0.3);
-    }
+    .cta-btn:hover { background: var(--flush); color: white; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,112,104,0.3); }
 
     footer {
       text-align: center; padding: 2.5rem 3rem; font-size: 0.875rem;
@@ -567,43 +421,19 @@
     }
     footer .foot-cn { font-family: var(--ff-cn); margin-top: 0.3rem; }
 
-    .divider { width: 40px; height: 3px; background: linear-gradient(90deg, var(--rose), var(--gold)); margin: 4rem auto; opacity: 0.5; border-radius: 2px; }
-
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* Stagger children */
-    .fade-in.visible .why-card,
-    .fade-in.visible .stage,
-    .fade-in.visible .project-type,
-    .fade-in.visible .outcome,
-    .fade-in.visible .deliverable-col,
-    .fade-in.visible .value-item {
-      animation: float-up 0.6s ease forwards;
-      opacity: 0;
-    }
-    .fade-in.visible > :nth-child(1) .why-card, .fade-in.visible .why-card:nth-child(1),
-    .fade-in.visible .stage:nth-child(1), .fade-in.visible .project-type:nth-child(1),
-    .fade-in.visible .outcome:nth-child(1), .fade-in.visible .deliverable-col:nth-child(1),
-    .fade-in.visible .value-item:nth-child(1) { animation-delay: 0.05s; }
-    .fade-in.visible .why-card:nth-child(2), .fade-in.visible .stage:nth-child(2),
-    .fade-in.visible .project-type:nth-child(2), .fade-in.visible .outcome:nth-child(2),
-    .fade-in.visible .deliverable-col:nth-child(2), .fade-in.visible .value-item:nth-child(2) { animation-delay: 0.12s; }
-    .fade-in.visible .why-card:nth-child(3), .fade-in.visible .stage:nth-child(3),
-    .fade-in.visible .project-type:nth-child(3), .fade-in.visible .outcome:nth-child(3),
-    .fade-in.visible .deliverable-col:nth-child(3), .fade-in.visible .value-item:nth-child(3) { animation-delay: 0.19s; }
-    .fade-in.visible .project-type:nth-child(4), .fade-in.visible .outcome:nth-child(4),
-    .fade-in.visible .value-item:nth-child(4) { animation-delay: 0.26s; }
-    .fade-in.visible .outcome:nth-child(5), .fade-in.visible .value-item:nth-child(5) { animation-delay: 0.33s; }
-    .fade-in.visible .outcome:nth-child(6), .fade-in.visible .value-item:nth-child(6) { animation-delay: 0.4s; }
-
     @media (max-width: 640px) {
       nav { padding: 0.9rem 1.5rem; }
       nav ul { display: none; }
       section { padding: 3.5rem 1.5rem; }
-      .hero { padding: 6rem 1.5rem 4rem; }
-      .visual-break { height: 35vh; min-height: 260px; }
-      .visual-break .vb-glass { left: 1.5rem; right: 1.5rem; bottom: 1.5rem; padding: 1.5rem; }
+      .hero { padding: 6rem 1.5rem 4rem; grid-template-columns: 1fr; }
+      .hero-poster { order: -1; }
+      .hero-poster img { max-width: 280px; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; padding-top: 7rem; }
+      .hero-poster { order: -1; }
+      .hero-poster img { max-width: 280px; }
     }
   </style>
 </head>
@@ -615,11 +445,11 @@
   <div class="logo">Feeling Futures <span>感知未来</span></div>
   <div class="nav-right">
     <ul>
-      <li><a href="#why" class="en">Why</a><a href="#why" class="cn">为什么</a></li>
-      <li><a href="#structure" class="en">Structure</a><a href="#structure" class="cn">架构</a></li>
+      <li><a href="#curriculum" class="en">Curriculum</a><a href="#curriculum" class="cn">课程</a></li>
+      <li><a href="#sessions" class="en">Sessions</a><a href="#sessions" class="cn">课时</a></li>
       <li><a href="#outcomes" class="en">Outcomes</a><a href="#outcomes" class="cn">成果</a></li>
       <li><a href="#projects" class="en">Projects</a><a href="#projects" class="cn">项目</a></li>
-      <li><a href="#timeline" class="en">Timeline</a><a href="#timeline" class="cn">时间线</a></li>
+      <li><a href="#formats" class="en">Formats</a><a href="#formats" class="cn">形式</a></li>
       <li><a href="#value" class="en">Value</a><a href="#value" class="cn">价值</a></li>
     </ul>
     <div class="lang-toggle">
@@ -634,15 +464,14 @@
   <div class="blob blob-rose blob-animate" style="width:500px;height:500px;top:5%;right:0;"></div>
   <div class="blob blob-gold blob-drift" style="width:400px;height:400px;bottom:5%;left:5%;"></div>
   <div class="blob blob-blush blob-animate-alt" style="width:600px;height:600px;top:25%;left:30%;"></div>
-
   <div class="hero fade-in">
     <div class="hero-content">
-      <div class="hero-overline en">International Joint Workshop Proposal</div>
-      <div class="hero-overline cn">国际联合工作坊提案</div>
+      <div class="hero-overline en">International Joint Workshop Program</div>
+      <div class="hero-overline cn">国际联合工作坊课程</div>
       <h1 class="en">Feeling<br>Futures</h1><h1 class="cn">感知未来</h1>
       <div class="cn-title en">感知未来</div><div class="cn-title cn">Feeling Futures</div>
-      <div class="subtitle en">Designing Emotional Experiences in the AI Economy</div>
-      <div class="subtitle cn">在人工智能经济中设计情感体验</div>
+      <div class="subtitle en">A structured workshop program that trains art & technology students to design AI-powered emotional experiences — producing competition-ready and exhibition-ready innovation projects.</div>
+      <div class="subtitle cn">一套结构化工作坊课程，培训艺术与科技专业学生设计 AI 驱动的情感体验——产出可参赛、可展览的创新项目。</div>
       <dl class="hero-meta">
         <div><dt class="en">Format</dt><dt class="cn">形式</dt><dd class="en">5-Session Sprint</dd><dd class="cn">5 次冲刺工作坊</dd></div>
         <div><dt class="en">Duration</dt><dt class="cn">周期</dt><dd class="en">3 Weeks</dd><dd class="cn">3 周</dd></div>
@@ -655,108 +484,271 @@
   </div>
 </div>
 
-<!-- ═══ Curatorial ═══ -->
-<div class="curatorial fade-in">
-  <div class="section-label en" style="justify-content:center;">Curatorial Narrative</div>
-  <div class="section-label cn" style="justify-content:center;">策展叙事</div>
-  <blockquote class="en">The next economy will not be built on efficiency alone. It will be shaped by how deeply technology can sense, interpret, and respond to human emotion. <em>Feeling Futures</em> imagines the emotional architectures of tomorrow — where AI becomes a medium of empathy, care, and cultural resonance.</blockquote>
-  <blockquote class="cn">下一个经济时代不会仅仅建立在效率之上。它将取决于技术能多深刻地感知、理解和回应人类情感。「感知未来」想象明天的情感建筑——AI 不再是优化工具，而是共情、关怀与文化共鸣的媒介。</blockquote>
-</div>
-
-<!-- ═══ Visual Break 1 ═══ -->
-<div class="visual-break">
-  <div class="vb-art vb-theme-touch">
-    <div class="vb-layer vb-l1"></div>
-    <div class="vb-layer vb-l2"></div>
-    <div class="vb-layer vb-l3"></div>
-    <div class="vb-layer vb-l4"></div>
+<!-- ═══ At a Glance ═══ -->
+<div class="glance-strip fade-in">
+  <div class="glance-item">
+    <div class="glance-num">5</div>
+    <div class="glance-label en">Half-Day Sessions</div>
+    <div class="glance-label cn">半天课时</div>
   </div>
-  <div class="vb-edge-top"></div>
-  <div class="vb-edge-bottom"></div>
-  <div class="vb-glass">
-    <h3 class="en">Where technology learns to feel</h3>
-    <h3 class="cn">当技术学会感知</h3>
-    <p class="en">Experience design for an emotionally intelligent future</p>
-    <p class="cn">为情感智能的未来而设计体验</p>
+  <div class="glance-item">
+    <div class="glance-num">3</div>
+    <div class="glance-label en">Learning Stages</div>
+    <div class="glance-label cn">学习阶段</div>
+  </div>
+  <div class="glance-item">
+    <div class="glance-num">3</div>
+    <div class="glance-label en">Output Formats</div>
+    <div class="glance-label cn">产出形式</div>
+  </div>
+  <div class="glance-item">
+    <div class="glance-num">∞</div>
+    <div class="glance-label en">Competition Pathways</div>
+    <div class="glance-label cn">竞赛通道</div>
   </div>
 </div>
 
-<!-- ═══ Why ═══ -->
-<div class="warm-band warm-band--rose" style="position:relative;">
-  <div class="blob blob-flush blob-animate" style="width:450px;height:450px;top:0;left:-8%;"></div>
+<!-- ═══ Curriculum Overview (Process Flow) ═══ -->
+<section id="curriculum" class="fade-in" style="position:relative;">
+  <div class="blob blob-peach blob-animate" style="width:400px;height:400px;top:-5%;right:-5%;"></div>
+  <div class="section-label en">Curriculum Overview</div><div class="section-label cn">课程总览</div>
+  <h2 class="en">Three stages, one clear transformation</h2><h2 class="cn">三个阶段，一次清晰的蜕变</h2>
+  <p class="lead en">Each stage builds on the last — from research to concept to deliverable. Students progress through a proven design innovation methodology.</p>
+  <p class="lead cn">每个阶段层层递进——从研究到概念再到交付物。学生通过经过验证的设计创新方法论逐步成长。</p>
+
+  <div class="process-flow">
+    <div class="pf-stage">
+      <div class="pf-circle"><div class="pf-icon">👁</div><div class="pf-num">S1–S2</div></div>
+      <div class="pf-name en">Sensing the Now</div><div class="pf-name cn">感知当下</div>
+      <div class="pf-sessions en">Sessions 1–2</div><div class="pf-sessions cn">第 1–2 次课</div>
+      <div class="pf-arrow">→</div>
+    </div>
+    <div class="pf-stage">
+      <div class="pf-circle"><div class="pf-icon">✦</div><div class="pf-num">S3–S4</div></div>
+      <div class="pf-name en">Designing Future States</div><div class="pf-name cn">设计未来状态</div>
+      <div class="pf-sessions en">Sessions 3–4</div><div class="pf-sessions cn">第 3–4 次课</div>
+      <div class="pf-arrow">→</div>
+    </div>
+    <div class="pf-stage">
+      <div class="pf-circle"><div class="pf-icon">◆</div><div class="pf-num">S5</div></div>
+      <div class="pf-name en">Making It Real</div><div class="pf-name cn">让它成真</div>
+      <div class="pf-sessions en">Session 5</div><div class="pf-sessions cn">第 5 次课</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Teaching Methods ═══ -->
+<div class="warm-band warm-band--blush" style="position:relative;">
   <div class="blob blob-gold blob-drift" style="width:300px;height:300px;bottom:5%;right:5%;"></div>
-  <section id="why" class="fade-in">
-    <div class="section-label en">Why This, Why Now</div><div class="section-label cn">为什么是现在</div>
-    <h2 class="en">The emotional economy is the next frontier</h2><h2 class="cn">情感经济是下一个前沿</h2>
-    <p class="lead en">We are entering an era where human feeling becomes both the medium and the market.</p>
-    <p class="lead cn">我们正进入一个人类情感既是媒介也是市场的时代。</p>
-    <div class="why-grid">
-      <div class="why-card"><div class="num">01</div><h3 class="en">The Emotional Economy</h3><h3 class="cn">情感经济</h3><p class="en">Global markets are shifting from products to experiences, from features to feelings. Emotional design is becoming a core value driver.</p><p class="cn">全球市场正从产品转向体验，从功能转向感受。情感设计正成为核心价值驱动力。</p></div>
-      <div class="why-card"><div class="num">02</div><h3 class="en">AI as Emotional Medium</h3><h3 class="cn">AI 作为情感媒介</h3><p class="en">Generative AI and affective computing are transforming how we design for feeling. AI is becoming the material of experience itself.</p><p class="cn">生成式 AI 和情感计算正改变我们为感受而设计的方式。AI 正成为体验本身的材料。</p></div>
-      <div class="why-card"><div class="num">03</div><h3 class="en">Future Lifestyles</h3><h3 class="cn">未来生活方式</h3><p class="en">How will we rest, connect, heal, and celebrate in 2035? New emotional rituals mediated by AI, grounded in culture.</p><p class="cn">2035 年我们将如何休息、连接、疗愈和庆祝？以 AI 为媒介、扎根文化的新情感仪式。</p></div>
+  <section class="fade-in">
+    <div class="section-label en">Teaching Methodology</div><div class="section-label cn">教学方法</div>
+    <h2 class="en">How we teach — not just what</h2><h2 class="cn">我们如何教——不只是教什么</h2>
+    <p class="lead en">Five teaching modes rotate throughout each session, keeping energy high and learning embodied.</p>
+    <p class="lead cn">五种教学模式在每节课中交替进行，保持高能量和具身化学习。</p>
+    <div class="methods-ribbon">
+      <div class="method-card"><div class="method-icon-lg">🎯</div><h4 class="en">Framework Lecture</h4><h4 class="cn">框架讲授</h4><p class="en">15–20 min concept intro</p><p class="cn">15–20 分钟概念引入</p></div>
+      <div class="method-card"><div class="method-icon-lg">🤲</div><h4 class="en">Hands-on Lab</h4><h4 class="cn">动手实验</h4><p class="en">AI tools + creative coding</p><p class="cn">AI 工具 + 创意编程</p></div>
+      <div class="method-card"><div class="method-icon-lg">👥</div><h4 class="en">Team Sprint</h4><h4 class="cn">团队冲刺</h4><p class="en">Collaborative design sessions</p><p class="cn">协作设计环节</p></div>
+      <div class="method-card"><div class="method-icon-lg">💬</div><h4 class="en">Critique & Review</h4><h4 class="cn">评议与评审</h4><p class="en">Peer + mentor feedback</p><p class="cn">同伴 + 导师反馈</p></div>
+      <div class="method-card"><div class="method-icon-lg">🎤</div><h4 class="en">Pitch Practice</h4><h4 class="cn">路演演练</h4><p class="en">Competition-format presentation</p><p class="cn">竞赛格式展示</p></div>
     </div>
   </section>
 </div>
 
-<div class="divider"></div>
+<!-- ═══ 5 Session Detail Cards ═══ -->
+<section id="sessions" class="fade-in" style="position:relative;">
+  <div class="blob blob-blush blob-animate" style="width:350px;height:350px;top:5%;left:-8%;"></div>
+  <div class="section-label en">Session Details</div><div class="section-label cn">课时详情</div>
+  <h2 class="en">What happens in each session</h2><h2 class="cn">每节课具体做什么</h2>
+  <p class="lead en">Each session is a half-day (3–4 hours). Here's exactly what students learn, how they learn it, and what they produce.</p>
+  <p class="lead cn">每次课为半天（3–4 小时）。以下是学生具体学什么、怎么学、产出什么。</p>
 
-<!-- ═══ Structure ═══ -->
-<section id="structure" class="fade-in" style="position:relative;">
-  <div class="blob blob-peach blob-animate" style="width:350px;height:350px;top:-5%;right:-5%;"></div>
-  <div class="section-label en">Workshop Architecture</div><div class="section-label cn">工作坊架构</div>
-  <h2 class="en">Three movements, five sessions</h2><h2 class="cn">三个阶段，五次课程</h2>
-  <p class="lead en">Begin with deep sensing, move through imaginative design, arrive at tangible innovation.</p>
-  <p class="lead cn">从深度感知开始，经历想象性设计，抵达可触摸的创新。</p>
-  <div class="stages">
-    <div class="stage"><div class="stage-number en">Stage 01</div><div class="stage-number cn">阶段 01</div><h3 class="en">Sensing the Now</h3><h3 class="cn">感知当下</h3><div class="cn-sub en">感知当下</div><div class="cn-sub cn">Sensing the Now</div><p class="en">Map the emotional texture of contemporary life and the feelings technologies create, suppress, or transform.</p><p class="cn">映射当代生活的情感肌理，以及技术所创造、压抑或转化的感受。</p><ul class="session-list en"><li><span class="session-tag">S1</span> Emotional Landscape Mapping</li><li><span class="session-tag">S2</span> AI Sensing Workshop</li></ul><ul class="session-list cn"><li><span class="session-tag">S1</span> 情感图景绘制</li><li><span class="session-tag">S2</span> AI 感知工作坊</li></ul></div>
-    <div class="stage"><div class="stage-number en">Stage 02</div><div class="stage-number cn">阶段 02</div><h3 class="en">Designing Future States</h3><h3 class="cn">设计未来状态</h3><div class="cn-sub en">设计未来状态</div><div class="cn-sub cn">Designing Future States</div><p class="en">Transform emotional insights into speculative concepts. Bridge visionary thinking with innovation structure.</p><p class="cn">将情感洞察转化为推测性概念。将远见思维与创新结构连接。</p><ul class="session-list en"><li><span class="session-tag">S3</span> Experience Concept Design</li><li><span class="session-tag">S4</span> Innovation Structuring</li></ul><ul class="session-list cn"><li><span class="session-tag">S3</span> 体验概念设计</li><li><span class="session-tag">S4</span> 创新结构化</li></ul></div>
-    <div class="stage"><div class="stage-number en">Stage 03</div><div class="stage-number cn">阶段 03</div><h3 class="en">Making It Real</h3><h3 class="cn">让它成真</h3><div class="cn-sub en">让它成真</div><div class="cn-sub cn">Making It Real</div><p class="en">Rapid prototyping and pitch refinement. Outputs that work as exhibition, competition, and proof-of-concept.</p><p class="cn">快速原型与路演打磨。产出可作为展览、竞赛和概念验证。</p><ul class="session-list en"><li><span class="session-tag">S5</span> Prototype Sprint + Final Pitch</li></ul><ul class="session-list cn"><li><span class="session-tag">S5</span> 原型冲刺 + 终期路演</li></ul></div>
+  <div class="session-cards">
+    <!-- S1 -->
+    <div class="session-card">
+      <div class="sc-num">S1</div>
+      <div class="sc-main">
+        <div class="sc-phase en">Stage 1 · Sensing</div><div class="sc-phase cn">阶段一 · 感知</div>
+        <h4 class="en">Emotional Landscape Mapping</h4><h4 class="cn">情感图景绘制</h4>
+        <p class="en">Students learn to research emotional needs systematically — moving beyond intuition to structured insight.</p>
+        <p class="cn">学生学习系统性地研究情感需求——从直觉走向结构化洞察。</p>
+      </div>
+      <div class="sc-method">
+        <div class="sc-method-title en">How They Learn</div><div class="sc-method-title cn">怎么学</div>
+        <ul class="sc-method-list">
+          <li class="en"><span class="method-icon">🎯</span> Emotional economy framework lecture</li>
+          <li class="cn"><span class="method-icon">🎯</span> 情感经济框架讲授</li>
+          <li class="en"><span class="method-icon">👥</span> Team formation + territory selection</li>
+          <li class="cn"><span class="method-icon">👥</span> 团队组建 + 方向选择</li>
+          <li class="en"><span class="method-icon">🤲</span> Field research exercise</li>
+          <li class="cn"><span class="method-icon">🤲</span> 田野调查练习</li>
+        </ul>
+      </div>
+      <div class="sc-output">
+        <div class="sc-output-title en">What They Produce</div><div class="sc-output-title cn">产出什么</div>
+        <div class="sc-output-tags en"><span>Research Brief</span><span>Emotional Atlas v1</span><span>Team Charter</span></div>
+        <div class="sc-output-tags cn"><span>研究简报</span><span>情感图谱 v1</span><span>团队章程</span></div>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="session-card">
+      <div class="sc-num">S2</div>
+      <div class="sc-main">
+        <div class="sc-phase en">Stage 1 · Sensing</div><div class="sc-phase cn">阶段一 · 感知</div>
+        <h4 class="en">AI Sensing Workshop</h4><h4 class="cn">AI 感知工作坊</h4>
+        <p class="en">Hands-on with AI tools as research instruments — sentiment analysis, emotion APIs, generative mood boards.</p>
+        <p class="cn">动手使用 AI 工具作为研究手段——情感分析、情绪 API、生成式情绪板。</p>
+      </div>
+      <div class="sc-method">
+        <div class="sc-method-title en">How They Learn</div><div class="sc-method-title cn">怎么学</div>
+        <ul class="sc-method-list">
+          <li class="en"><span class="method-icon">🤲</span> AI tool hands-on lab</li>
+          <li class="cn"><span class="method-icon">🤲</span> AI 工具动手实验</li>
+          <li class="en"><span class="method-icon">👥</span> Insight synthesis sprint</li>
+          <li class="cn"><span class="method-icon">👥</span> 洞察综合冲刺</li>
+          <li class="en"><span class="method-icon">💬</span> Peer sharing + critique</li>
+          <li class="cn"><span class="method-icon">💬</span> 同伴分享 + 评议</li>
+        </ul>
+      </div>
+      <div class="sc-output">
+        <div class="sc-output-title en">What They Produce</div><div class="sc-output-title cn">产出什么</div>
+        <div class="sc-output-tags en"><span>AI Tool Fluency</span><span>Insight Report</span><span>Opportunity Statement</span></div>
+        <div class="sc-output-tags cn"><span>AI 工具熟练</span><span>洞察报告</span><span>机会陈述</span></div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="session-card">
+      <div class="sc-num">S3</div>
+      <div class="sc-main">
+        <div class="sc-phase en">Stage 2 · Designing</div><div class="sc-phase cn">阶段二 · 设计</div>
+        <h4 class="en">Experience Concept Design</h4><h4 class="cn">体验概念设计</h4>
+        <p class="en">Transform insights into speculative experience concepts through scenario building and journey mapping.</p>
+        <p class="cn">通过场景构建和旅程映射将洞察转化为推测性体验概念。</p>
+      </div>
+      <div class="sc-method">
+        <div class="sc-method-title en">How They Learn</div><div class="sc-method-title cn">怎么学</div>
+        <ul class="sc-method-list">
+          <li class="en"><span class="method-icon">🎯</span> Experience architecture lecture</li>
+          <li class="cn"><span class="method-icon">🎯</span> 体验架构讲授</li>
+          <li class="en"><span class="method-icon">👥</span> Speculative design sprint</li>
+          <li class="cn"><span class="method-icon">👥</span> 推测性设计冲刺</li>
+          <li class="en"><span class="method-icon">💬</span> Midterm concept review</li>
+          <li class="cn"><span class="method-icon">💬</span> 中期概念评审</li>
+        </ul>
+      </div>
+      <div class="sc-output">
+        <div class="sc-output-title en">What They Produce</div><div class="sc-output-title cn">产出什么</div>
+        <div class="sc-output-tags en"><span>Experience Scenario</span><span>Journey Map</span><span>Concept Sketch</span></div>
+        <div class="sc-output-tags cn"><span>体验场景</span><span>旅程图</span><span>概念草图</span></div>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="session-card">
+      <div class="sc-num">S4</div>
+      <div class="sc-main">
+        <div class="sc-phase en">Stage 2 · Designing</div><div class="sc-phase cn">阶段二 · 设计</div>
+        <h4 class="en">Innovation Structuring</h4><h4 class="cn">创新结构化</h4>
+        <p class="en">Frame creative concepts as competition-ready innovation projects with value propositions and impact models.</p>
+        <p class="cn">将创意概念框架化为可参赛的创新项目，含价值主张和影响力模型。</p>
+      </div>
+      <div class="sc-method">
+        <div class="sc-method-title en">How They Learn</div><div class="sc-method-title cn">怎么学</div>
+        <ul class="sc-method-list">
+          <li class="en"><span class="method-icon">🎯</span> Innovation narrative framework</li>
+          <li class="cn"><span class="method-icon">🎯</span> 创新叙事框架</li>
+          <li class="en"><span class="method-icon">🤲</span> Pitch deck workshop</li>
+          <li class="cn"><span class="method-icon">🤲</span> 路演文稿工作坊</li>
+          <li class="en"><span class="method-icon">🎤</span> Pitch practice round 1</li>
+          <li class="cn"><span class="method-icon">🎤</span> 路演演练第一轮</li>
+        </ul>
+      </div>
+      <div class="sc-output">
+        <div class="sc-output-title en">What They Produce</div><div class="sc-output-title cn">产出什么</div>
+        <div class="sc-output-tags en"><span>Value Proposition</span><span>Pitch Deck Draft</span><span>Innovation Brief</span></div>
+        <div class="sc-output-tags cn"><span>价值主张</span><span>路演草案</span><span>创新简报</span></div>
+      </div>
+    </div>
+
+    <!-- S5 -->
+    <div class="session-card">
+      <div class="sc-num">S5</div>
+      <div class="sc-main">
+        <div class="sc-phase en">Stage 3 · Making</div><div class="sc-phase cn">阶段三 · 创造</div>
+        <h4 class="en">Prototype Sprint + Final Pitch</h4><h4 class="cn">原型冲刺 + 终期路演</h4>
+        <p class="en">Build functional prototypes, produce experience videos, and present to a panel of guest critics.</p>
+        <p class="cn">构建功能原型、制作体验视频，并向评委团进行正式路演。</p>
+      </div>
+      <div class="sc-method">
+        <div class="sc-method-title en">How They Learn</div><div class="sc-method-title cn">怎么学</div>
+        <ul class="sc-method-list">
+          <li class="en"><span class="method-icon">🤲</span> Rapid prototyping sprint</li>
+          <li class="cn"><span class="method-icon">🤲</span> 快速原型冲刺</li>
+          <li class="en"><span class="method-icon">💬</span> Final critique session</li>
+          <li class="cn"><span class="method-icon">💬</span> 终期评议</li>
+          <li class="en"><span class="method-icon">🎤</span> Formal pitch to critics panel</li>
+          <li class="cn"><span class="method-icon">🎤</span> 向评委团正式路演</li>
+        </ul>
+      </div>
+      <div class="sc-output">
+        <div class="sc-output-title en">What They Produce</div><div class="sc-output-title cn">产出什么</div>
+        <div class="sc-output-tags en"><span>Working Prototype</span><span>Experience Video</span><span>Final Pitch</span><span>Exhibition Piece</span></div>
+        <div class="sc-output-tags cn"><span>可工作原型</span><span>体验视频</span><span>终期路演</span><span>展览作品</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══ Visual Break 2 ═══ -->
-<div class="visual-break">
-  <div class="vb-art vb-theme-light">
-    <div class="vb-layer vb-l1"></div>
-    <div class="vb-layer vb-l2"></div>
-    <div class="vb-layer vb-l3"></div>
-    <div class="vb-layer vb-l4"></div>
-  </div>
-  <div class="vb-edge-top"></div>
-  <div class="vb-edge-bottom"></div>
-  <div class="vb-glass">
-    <h3 class="en">From sensing to making</h3><h3 class="cn">从感知到创造</h3>
-    <p class="en">Each session builds new creative muscles</p><p class="cn">每一次课程都构建新的创造力</p>
-  </div>
-</div>
-
-<!-- ═══ Outcomes ═══ -->
+<!-- ═══ Skills Before / After ═══ -->
 <div class="warm-band warm-band--deep" style="position:relative;">
   <div class="blob blob-flush blob-animate" style="width:500px;height:500px;top:-10%;right:-5%;opacity:0.5;"></div>
   <div class="blob blob-rose blob-drift" style="width:400px;height:400px;bottom:-5%;left:5%;opacity:0.3;"></div>
   <section id="outcomes" class="fade-in">
-    <div class="section-label en">Student Outcomes</div><div class="section-label cn">学生成果</div>
-    <h2 class="en">From concept storytellers to experience innovators</h2><h2 class="cn">从概念叙事者到体验创新者</h2>
-    <p class="lead en">Students already know how to feel and imagine. This workshop teaches them to structure, validate, and deliver.</p>
-    <p class="lead cn">学生已经懂得感受和想象。工作坊教他们结构化、验证和交付。</p>
-    <div class="outcomes-grid">
-      <div class="outcome"><div class="marker">01</div><div><h4 class="en">Emotional Research Methods</h4><h4 class="cn">情感研究方法</h4><p class="en">Structured approaches to mapping emotional landscapes and grounding concepts in human insight.</p><p class="cn">结构化方法来映射情感图景，将概念扎根于人类洞察。</p></div></div>
-      <div class="outcome"><div class="marker">02</div><div><h4 class="en">AI Prototyping Fluency</h4><h4 class="cn">AI 原型能力</h4><p class="en">Generative AI and creative coding as experience design mediums.</p><p class="cn">将生成式 AI 和创意编程作为体验设计媒介。</p></div></div>
-      <div class="outcome"><div class="marker">03</div><div><h4 class="en">Innovation Structuring</h4><h4 class="cn">创新结构化</h4><p class="en">Frame concepts with clear value propositions and scalable impact narratives.</p><p class="cn">用清晰价值主张和可规模化叙事框架化概念。</p></div></div>
-      <div class="outcome"><div class="marker">04</div><div><h4 class="en">Competition Communication</h4><h4 class="cn">竞赛级表达</h4><p class="en">Distill visionary ideas into compelling narratives for judges and institutions.</p><p class="cn">将远见想法提炼为面向评委的有说服力的叙事。</p></div></div>
-      <div class="outcome"><div class="marker">05</div><div><h4 class="en">Cross-Media Design</h4><h4 class="cn">跨媒体设计</h4><p class="en">Emotional continuity across app, space, VR, installation, and service.</p><p class="cn">跨应用、空间、VR、装置和服务的情感连续性。</p></div></div>
-      <div class="outcome"><div class="marker">06</div><div><h4 class="en">Cultural Innovation</h4><h4 class="cn">文化创新</h4><p class="en">Connect emotional design to social impact and new economy discourse.</p><p class="cn">将情感设计与社会影响和新经济话语相连。</p></div></div>
+    <div class="section-label en">Student Transformation</div><div class="section-label cn">学生蜕变</div>
+    <h2 class="en">What changes after the workshop</h2><h2 class="cn">工作坊之后的变化</h2>
+    <p class="lead en">Students keep their creative strengths — and gain the structural skills they're missing.</p>
+    <p class="lead cn">学生保留创意优势——并获得他们缺失的结构化能力。</p>
+    <div class="skills-compare">
+      <div class="skills-col skills-before">
+        <h4 class="en">Before — Students Can...</h4><h4 class="cn">之前 — 学生能够...</h4>
+        <div class="skill-item en"><span class="skill-dot"></span> Tell compelling concept stories</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 讲述有吸引力的概念故事</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Create strong visual aesthetics</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 创造出色的视觉美感</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Use Figma, VR tools, creative coding</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 使用 Figma、VR 工具、创意编程</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Think in experience design terms</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 以体验设计思维思考</div>
+      </div>
+      <div class="skills-arrow">→</div>
+      <div class="skills-col skills-after">
+        <h4 class="en">After — Students Can Also...</h4><h4 class="cn">之后 — 学生还能够...</h4>
+        <div class="skill-item en"><span class="skill-dot"></span> Conduct structured emotional research</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 进行结构化情感研究</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Prototype with AI tools and APIs</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 用 AI 工具和 API 做原型</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Frame projects for innovation competitions</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 为创新竞赛框架化项目</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Deliver competition-format pitches</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 进行竞赛格式路演</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Build cross-media experience systems</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 构建跨媒体体验系统</div>
+        <div class="skill-item en"><span class="skill-dot"></span> Connect design to market and social impact</div>
+        <div class="skill-item cn"><span class="skill-dot"></span> 将设计与市场和社会影响连接</div>
+      </div>
     </div>
   </section>
 </div>
 
-<!-- ═══ Projects ═══ -->
+<!-- ═══ Project Types ═══ -->
 <section id="projects" class="fade-in" style="position:relative;">
   <div class="blob blob-blush blob-animate" style="width:400px;height:400px;top:5%;left:-8%;"></div>
   <div class="section-label en">Project Territories</div><div class="section-label cn">项目方向</div>
-  <h2 class="en">Four domains where emotion meets innovation</h2><h2 class="cn">情感与创新交汇的四大领域</h2>
-  <p class="lead en">Each territory is a convergence of cultural need, technology, and market opportunity.</p>
-  <p class="lead cn">每个方向都是文化需求、技术和市场机遇的交汇。</p>
+  <h2 class="en">Four domains students can explore</h2><h2 class="cn">学生可探索的四大领域</h2>
+  <p class="lead en">Each territory sits at the intersection of cultural need, AI capability, and market opportunity.</p>
+  <p class="lead cn">每个方向都处于文化需求、AI 能力和市场机遇的交汇处。</p>
   <div class="projects-grid">
     <div class="project-type">
       <div class="pt-bg" style="background:linear-gradient(135deg, #c9a998 0%, #e8b4a8 40%, #f0c9b8 70%, #d4a574 100%);"></div>
@@ -764,8 +756,8 @@
       <div class="pt-content">
         <div class="type-label en">Territory 01</div><div class="type-label cn">方向 01</div>
         <h3 class="en">AI Emotional Companions</h3><h3 class="cn">AI 情感伙伴</h3>
-        <p class="en">Companions that sense, respond to, and grow with human emotional states.</p>
-        <p class="cn">能感知、回应并与人类情感共同成长的伙伴。</p>
+        <p class="en">AI companions that sense, respond to, and grow with human emotional states.</p>
+        <p class="cn">能感知、回应并与人类情感共同成长的 AI 伙伴。</p>
         <div class="examples en"><span>Grief processing</span><span>Child literacy</span><span>Elder care</span><span>Mood partners</span></div>
         <div class="examples cn"><span>哀伤疗愈</span><span>儿童素养</span><span>老年关怀</span><span>情绪搭档</span></div>
       </div>
@@ -778,8 +770,8 @@
         <h3 class="en">Immersive Consumption</h3><h3 class="cn">沉浸式消费</h3>
         <p class="en">AI-responsive environments adapting to emotional states in real time.</p>
         <p class="cn">实时适应情感状态的 AI 响应式环境。</p>
-        <div class="examples en"><span>Mood retail</span><span>Emotional dining</span><span>Adaptive venues</span><span>Sensory commerce</span></div>
-        <div class="examples cn"><span>情绪零售</span><span>情感餐饮</span><span>自适应场馆</span><span>感官商业</span></div>
+        <div class="examples en"><span>Mood retail</span><span>Emotional dining</span><span>Adaptive venues</span></div>
+        <div class="examples cn"><span>情绪零售</span><span>情感餐饮</span><span>自适应场馆</span></div>
       </div>
     </div>
     <div class="project-type">
@@ -790,8 +782,8 @@
         <h3 class="en">Urban Sensing Installations</h3><h3 class="cn">城市感知装置</h3>
         <p class="en">Making the emotional pulse of cities visible as shared aesthetic experience.</p>
         <p class="cn">使城市的情感脉搏可见，成为共享的美学体验。</p>
-        <div class="examples en"><span>City mood viz</span><span>Emotion gardens</span><span>Transit wellbeing</span><span>Healing spaces</span></div>
-        <div class="examples cn"><span>城市情绪</span><span>情感花园</span><span>出行幸福</span><span>疗愈空间</span></div>
+        <div class="examples en"><span>City mood viz</span><span>Emotion gardens</span><span>Healing spaces</span></div>
+        <div class="examples cn"><span>城市情绪</span><span>情感花园</span><span>疗愈空间</span></div>
       </div>
     </div>
     <div class="project-type">
@@ -809,69 +801,110 @@
   </div>
 </section>
 
-<!-- ═══ Visual Break 3 ═══ -->
-<div class="visual-break">
-  <div class="vb-art vb-theme-create">
-    <div class="vb-layer vb-l1"></div>
-    <div class="vb-layer vb-l2"></div>
-    <div class="vb-layer vb-l3"></div>
-    <div class="vb-layer vb-l4"></div>
-  </div>
-  <div class="vb-edge-top"></div>
-  <div class="vb-edge-bottom"></div>
-  <div class="vb-glass">
-    <h3 class="en">Every project is both artwork and innovation</h3><h3 class="cn">每个项目既是艺术品也是创新</h3>
-    <p class="en">Exhibition-ready, competition-ready, future-ready</p><p class="cn">可展览、可竞赛、面向未来</p>
-  </div>
-</div>
+<div class="divider"></div>
 
 <!-- ═══ Deliverables ═══ -->
-<div class="warm-band warm-band--blush" style="position:relative;">
-  <div class="blob blob-skin blob-animate" style="width:350px;height:350px;top:5%;right:-3%;"></div>
-  <div class="blob blob-gold blob-drift" style="width:280px;height:280px;bottom:10%;left:10%;"></div>
-  <section id="deliverables" class="fade-in">
-    <div class="section-label en">Final Deliverables</div><div class="section-label cn">最终交付物</div>
-    <h2 class="en">Three formats, infinite contexts</h2><h2 class="cn">三种形式，无限场景</h2>
-    <div class="deliverables-row">
-      <div class="deliverable-col"><h3 class="en">Prototype</h3><h3 class="cn">原型</h3><div class="del-item"><h4 class="en">Experience Demo</h4><h4 class="cn">体验演示</h4><p class="en">Working prototype with AI APIs, creative coding, or VR.</p><p class="cn">使用 AI API、创意编程或 VR 的可工作原型。</p></div><div class="del-item"><h4 class="en">Experience Video</h4><h4 class="cn">体验视频</h4><p class="en">2-3 minute contextual video.</p><p class="cn">2-3 分钟场景化视频。</p></div><div class="del-item"><h4 class="en">Tech Architecture</h4><h4 class="cn">技术架构</h4><p class="en">System diagram showing feasibility.</p><p class="cn">展示可行性的系统图。</p></div></div>
-      <div class="deliverable-col"><h3 class="en">Pitch</h3><h3 class="cn">路演</h3><div class="del-item"><h4 class="en">Pitch Deck</h4><h4 class="cn">路演文稿</h4><p class="en">8-12 competition-standard slides.</p><p class="cn">8-12 页竞赛标准演示。</p></div><div class="del-item"><h4 class="en">Innovation Brief</h4><h4 class="cn">创新简报</h4><p class="en">One-page structured summary.</p><p class="cn">一页结构化摘要。</p></div><div class="del-item"><h4 class="en">Live Pitch</h4><h4 class="cn">现场路演</h4><p class="en">5-min presentation to critics.</p><p class="cn">面向评委的 5 分钟展示。</p></div></div>
-      <div class="deliverable-col"><h3 class="en">Exhibition</h3><h3 class="cn">展览</h3><div class="del-item"><h4 class="en">Installation</h4><h4 class="cn">装置作品</h4><p class="en">Gallery-ready spatial piece.</p><p class="cn">画廊级空间作品。</p></div><div class="del-item"><h4 class="en">Process Docs</h4><h4 class="cn">过程文档</h4><p class="en">Research wall + iteration artifacts.</p><p class="cn">研究墙 + 迭代工件。</p></div><div class="del-item"><h4 class="en">Curatorial Statement</h4><h4 class="cn">策展陈述</h4><p class="en">Critical positioning text.</p><p class="cn">批评性定位文本。</p></div></div>
+<section class="fade-in" style="position:relative;">
+  <div class="blob blob-gold blob-drift" style="width:300px;height:300px;bottom:10%;right:0;"></div>
+  <div class="section-label en">Final Deliverables</div><div class="section-label cn">最终交付物</div>
+  <h2 class="en">Each team produces three formats</h2><h2 class="cn">每个团队产出三种形式</h2>
+  <p class="lead en">Outputs are designed to work simultaneously as exhibition pieces, competition entries, and portfolio projects.</p>
+  <p class="lead cn">产出被设计为可同时作为展览作品、竞赛参赛作品和作品集项目。</p>
+
+  <div class="del-visual">
+    <div class="del-card">
+      <div class="del-card-header"><div class="del-icon">⚡</div><h3 class="en">Prototype</h3><h3 class="cn">原型</h3></div>
+      <div class="del-card-body">
+        <div class="del-item"><h4 class="en">Experience Demo</h4><h4 class="cn">体验演示</h4><p class="en">Working prototype with AI APIs, creative coding, or VR</p><p class="cn">使用 AI API、创意编程或 VR 的可工作原型</p></div>
+        <div class="del-item"><h4 class="en">Experience Video</h4><h4 class="cn">体验视频</h4><p class="en">2–3 minute contextual video</p><p class="cn">2–3 分钟场景化视频</p></div>
+        <div class="del-item"><h4 class="en">Tech Architecture</h4><h4 class="cn">技术架构</h4><p class="en">System diagram showing feasibility</p><p class="cn">展示可行性的系统图</p></div>
+      </div>
+    </div>
+    <div class="del-card">
+      <div class="del-card-header"><div class="del-icon">🎤</div><h3 class="en">Pitch</h3><h3 class="cn">路演</h3></div>
+      <div class="del-card-body">
+        <div class="del-item"><h4 class="en">Pitch Deck</h4><h4 class="cn">路演文稿</h4><p class="en">8–12 competition-standard slides</p><p class="cn">8–12 页竞赛标准演示</p></div>
+        <div class="del-item"><h4 class="en">Innovation Brief</h4><h4 class="cn">创新简报</h4><p class="en">One-page structured summary</p><p class="cn">一页结构化摘要</p></div>
+        <div class="del-item"><h4 class="en">Live Pitch</h4><h4 class="cn">现场路演</h4><p class="en">5-min presentation to critic panel</p><p class="cn">面向评委的 5 分钟展示</p></div>
+      </div>
+    </div>
+    <div class="del-card">
+      <div class="del-card-header"><div class="del-icon">🏛</div><h3 class="en">Exhibition</h3><h3 class="cn">展览</h3></div>
+      <div class="del-card-body">
+        <div class="del-item"><h4 class="en">Installation</h4><h4 class="cn">装置作品</h4><p class="en">Gallery-ready spatial piece</p><p class="cn">画廊级空间作品</p></div>
+        <div class="del-item"><h4 class="en">Process Docs</h4><h4 class="cn">过程文档</h4><p class="en">Research wall + iteration artifacts</p><p class="cn">研究墙 + 迭代工件</p></div>
+        <div class="del-item"><h4 class="en">Curatorial Statement</h4><h4 class="cn">策展陈述</h4><p class="en">Critical positioning text</p><p class="cn">批评性定位文本</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Flexible Formats ═══ -->
+<div class="warm-band warm-band--rose" style="position:relative;">
+  <div class="blob blob-flush blob-animate" style="width:400px;height:400px;top:-5%;left:-5%;"></div>
+  <section id="formats" class="fade-in">
+    <div class="section-label en">Flexible Formats</div><div class="section-label cn">灵活形式</div>
+    <h2 class="en">Adapts to your academic calendar</h2><h2 class="cn">适配你的教学日历</h2>
+    <p class="lead en">The same curriculum, three delivery options — choose what fits your department.</p>
+    <p class="lead cn">同一套课程，三种交付方式——选择适合你院系的形式。</p>
+    <div class="formats-grid">
+      <div class="format-card">
+        <h4 class="en">Intensive</h4><h4 class="cn">密集版</h4>
+        <div class="format-duration en">3 Days</div><div class="format-duration cn">3 天</div>
+        <p class="en">Compressed format for workshop weeks or summer programs. All 5 sessions delivered in 3 consecutive days.</p>
+        <p class="cn">适用于工作坊周或暑期项目的压缩格式。5 次课在连续 3 天内完成。</p>
+        <ul class="format-features">
+          <li class="en">Best for: summer programs, workshop weeks</li>
+          <li class="cn">适用：暑期项目、工作坊周</li>
+          <li class="en">High intensity, rapid output</li>
+          <li class="cn">高强度、快速产出</li>
+        </ul>
+      </div>
+      <div class="format-card featured">
+        <div class="format-badge en">Recommended</div><div class="format-badge cn">推荐</div>
+        <h4 class="en">Distributed Sprint</h4><h4 class="cn">分布式冲刺</h4>
+        <div class="format-duration en">3 Weeks</div><div class="format-duration cn">3 周</div>
+        <p class="en">One session every 3–4 days. Students research and iterate between sessions. Optimal balance of depth and speed.</p>
+        <p class="cn">每 3–4 天一次课。学生在课间进行研究和迭代。深度与速度的最佳平衡。</p>
+        <ul class="format-features">
+          <li class="en">Best for: semester integration</li>
+          <li class="cn">适用：学期嵌入</li>
+          <li class="en">Time for research between sessions</li>
+          <li class="cn">课间有研究时间</li>
+        </ul>
+      </div>
+      <div class="format-card">
+        <h4 class="en">Semester Module</h4><h4 class="cn">学期模块</h4>
+        <div class="format-duration en">8 Weeks</div><div class="format-duration cn">8 周</div>
+        <p class="en">Extended format with added critique sessions and deeper research phases. Can be embedded as a course module.</p>
+        <p class="cn">扩展格式，增加评议环节和更深入的研究阶段。可嵌入为课程模块。</p>
+        <ul class="format-features">
+          <li class="en">Best for: curriculum integration</li>
+          <li class="cn">适用：课程体系融入</li>
+          <li class="en">Deepest learning, most polished output</li>
+          <li class="cn">最深入学习、最精致产出</li>
+        </ul>
+      </div>
     </div>
   </section>
 </div>
-
-<!-- ═══ Timeline ═══ -->
-<section id="timeline" class="fade-in" style="position:relative;">
-  <div class="blob blob-peach blob-animate-alt" style="width:300px;height:300px;bottom:10%;right:0;"></div>
-  <div class="section-label en">Timeline</div><div class="section-label cn">时间线</div>
-  <h2 class="en">Five sessions across three weeks</h2><h2 class="cn">三周内五次课程</h2>
-  <div class="timeline">
-    <div class="tl-item"><div class="tl-dot">S1</div><div class="tl-content"><div class="tl-phase en">Sensing</div><div class="tl-phase cn">感知</div><h4 class="en">Emotional Landscape Mapping</h4><h4 class="cn">情感图景绘制</h4><p class="en">Framework intro, team formation, field research.</p><p class="cn">框架引入、团队组建、田野调查。</p><div class="tl-outputs en"><span>Teams</span><span>Territory</span><span>Research brief</span><span>Atlas v1</span></div><div class="tl-outputs cn"><span>团队</span><span>方向</span><span>简报</span><span>图谱 v1</span></div></div></div>
-    <div class="tl-item"><div class="tl-dot">S2</div><div class="tl-content"><div class="tl-phase en">Sensing</div><div class="tl-phase cn">感知</div><h4 class="en">AI Sensing Workshop</h4><h4 class="cn">AI 感知工作坊</h4><p class="en">Sentiment analysis, emotion APIs, generative mood boards.</p><p class="cn">情感分析、情绪 API、生成式情绪板。</p><div class="tl-outputs en"><span>AI fluency</span><span>Insights</span><span>Opportunity statement</span></div><div class="tl-outputs cn"><span>AI 熟练度</span><span>洞察</span><span>机会陈述</span></div></div></div>
-    <div class="tl-item"><div class="tl-dot">S3</div><div class="tl-content"><div class="tl-phase en">Designing</div><div class="tl-phase cn">设计</div><h4 class="en">Experience Concept Design</h4><h4 class="cn">体验概念设计</h4><p class="en">Speculative sprint: scenarios, journey maps, experience architecture.</p><p class="cn">推测性冲刺：场景、旅程图、体验架构。</p><div class="tl-outputs en"><span>Scenario</span><span>Journey map</span><span>Concept</span><span>Midterm</span></div><div class="tl-outputs cn"><span>场景</span><span>旅程图</span><span>概念</span><span>中期评审</span></div></div></div>
-    <div class="tl-item"><div class="tl-dot">S4</div><div class="tl-content"><div class="tl-phase en">Designing</div><div class="tl-phase cn">设计</div><h4 class="en">Innovation Structuring</h4><h4 class="cn">创新结构化</h4><p class="en">Validation methods, impact modeling, pitch deck drafting.</p><p class="cn">验证方法、影响力建模、路演文稿起草。</p><div class="tl-outputs en"><span>Value prop</span><span>Validation</span><span>Pitch draft</span><span>Brief</span></div><div class="tl-outputs cn"><span>价值主张</span><span>验证</span><span>路演草案</span><span>简报</span></div></div></div>
-    <div class="tl-item"><div class="tl-dot">S5</div><div class="tl-content"><div class="tl-phase en">Making</div><div class="tl-phase cn">创造</div><h4 class="en">Prototype Sprint + Final Pitch</h4><h4 class="cn">原型冲刺 + 终期路演</h4><p class="en">Build, refine, present to guest critics panel.</p><p class="cn">构建、打磨、向评委团展示。</p><div class="tl-outputs en"><span>Prototype</span><span>Video</span><span>Pitch</span><span>Exhibition</span></div><div class="tl-outputs cn"><span>原型</span><span>视频</span><span>路演</span><span>展览</span></div></div></div>
-  </div>
-</section>
 
 <div class="divider"></div>
 
 <!-- ═══ Value ═══ -->
-<div class="warm-band warm-band--blush" style="position:relative;">
+<section id="value" class="fade-in" style="position:relative;">
   <div class="blob blob-rose blob-animate" style="width:400px;height:400px;top:-10%;left:-3%;"></div>
-  <section id="value" class="fade-in">
-    <div class="section-label en">Institutional Value</div><div class="section-label cn">院系价值</div>
-    <h2 class="en">Strategic evolution for the department</h2><h2 class="cn">推动院系战略升级</h2>
-    <div class="value-grid">
-      <div class="value-item"><h4 class="en">Exhibition → Competition</h4><h4 class="cn">展览 → 竞赛</h4><p class="en">Structural fluency for Internet+, Challenge Cup, and international awards.</p><p class="cn">互联网+、挑战杯和国际奖项所需的结构化能力。</p></div>
-      <div class="value-item"><h4 class="en">AI with Integrity</h4><h4 class="cn">有灵魂的 AI</h4><p class="en">AI as design material, used with creative intentionality.</p><p class="cn">AI 作为设计材料，以创作意图性使用。</p></div>
-      <div class="value-item"><h4 class="en">New Economy Alignment</h4><h4 class="cn">新经济对齐</h4><p class="en">Cultural governance, experience economy, AI+ industry themes.</p><p class="cn">文化治理、体验经济、AI+ 产业主题。</p></div>
-      <div class="value-item"><h4 class="en">Replicable Method</h4><h4 class="cn">可复制方法论</h4><p class="en">Three-stage framework for future courses and studios.</p><p class="cn">三阶段框架可用于未来课程和工作室。</p></div>
-      <div class="value-item"><h4 class="en">Global Positioning</h4><h4 class="cn">国际定位</h4><p class="en">Join global discourse on emotional AI and experience design.</p><p class="cn">加入情感 AI 和体验设计的全球话语。</p></div>
-      <div class="value-item"><h4 class="en">Multi-format Output</h4><h4 class="cn">多形态产出</h4><p class="en">Each project serves exhibition, competition, portfolio, and research.</p><p class="cn">每个项目同时服务展览、竞赛、作品集和研究。</p></div>
-    </div>
-  </section>
-</div>
+  <div class="section-label en">Institutional Value</div><div class="section-label cn">院系价值</div>
+  <h2 class="en">What this brings to your department</h2><h2 class="cn">这为你的院系带来什么</h2>
+  <div class="value-grid">
+    <div class="value-item"><h4 class="en">Exhibition → Competition Pipeline</h4><h4 class="cn">展览 → 竞赛管线</h4><p class="en">Students produce work that can enter Internet+, Challenge Cup, iF Design Award, and other competitions directly.</p><p class="cn">学生的作品可直接参加互联网+、挑战杯、iF 设计奖等竞赛。</p></div>
+    <div class="value-item"><h4 class="en">AI Integration with Creative Integrity</h4><h4 class="cn">保持创作完整性的 AI 整合</h4><p class="en">AI is taught as design material — used with the same intentionality as any creative medium.</p><p class="cn">AI 作为设计材料教授——以与任何创作媒介相同的意图性使用。</p></div>
+    <div class="value-item"><h4 class="en">New Economy Theme Alignment</h4><h4 class="cn">新经济主题对齐</h4><p class="en">Directly connects to national priorities: experience economy, cultural governance, AI+ industry themes.</p><p class="cn">直接对接国家战略：体验经济、文化治理、AI+ 产业主题。</p></div>
+    <div class="value-item"><h4 class="en">Replicable Methodology</h4><h4 class="cn">可复制方法论</h4><p class="en">The 3-stage framework (Sensing → Designing → Making) can become a department-wide teaching methodology.</p><p class="cn">三阶段框架（感知 → 设计 → 创造）可成为院系级教学方法论。</p></div>
+    <div class="value-item"><h4 class="en">International Positioning</h4><h4 class="cn">国际定位</h4><p class="en">Joint workshop format positions the department in global discourse on emotional AI and experience design.</p><p class="cn">联合工作坊形式将院系置于情感 AI 和体验设计的全球话语中。</p></div>
+    <div class="value-item"><h4 class="en">Multi-Format Student Portfolio</h4><h4 class="cn">多形态学生作品集</h4><p class="en">Each project serves exhibition, competition, portfolio, and research — maximum output value.</p><p class="cn">每个项目同时服务展览、竞赛、作品集和研究——最大化产出价值。</p></div>
+  </div>
+</section>
 
 <!-- ═══ CTA ═══ -->
 <div class="cta-wrap" style="position:relative;">
@@ -879,10 +912,10 @@
   <div class="cta-section">
     <div class="section-label en" style="justify-content:center;">Next Steps</div>
     <div class="section-label cn" style="justify-content:center;">下一步</div>
-    <h2 class="en">Let's design the future together</h2><h2 class="cn">让我们一起设计未来</h2>
-    <p class="en">Ready to be shaped to your department's context and goals.</p>
-    <p class="cn">已准备好根据贵院系的情境和目标进行调整。</p>
-    <a href="#" class="cta-btn en">Begin the Conversation</a>
+    <h2 class="en">Ready to bring this to your campus?</h2><h2 class="cn">准备好把课程带到你的校园了吗？</h2>
+    <p class="en">Feeling Futures can be customized to your department's context, calendar, and strategic goals. Let's talk.</p>
+    <p class="cn">「感知未来」可根据你院系的情境、日历和战略目标进行定制。让我们聊聊。</p>
+    <a href="#" class="cta-btn en">Start a Conversation</a>
     <a href="#" class="cta-btn cn">开启对话</a>
   </div>
 </div>
@@ -890,11 +923,10 @@
 <footer>
   <div>Feeling Futures 感知未来</div>
   <div class="foot-cn">在人工智能经济中设计情感体验</div>
-  <div style="margin-top:0.5rem;opacity:0.5;">2026 · International Joint Workshop Proposal</div>
+  <div style="margin-top:0.5rem;opacity:0.5;">2026 · International Joint Workshop Program</div>
 </footer>
 
 <script>
-  // Language
   function setLang(lang) {
     document.documentElement.setAttribute('data-lang', lang);
     document.documentElement.setAttribute('lang', lang === 'cn' ? 'zh-CN' : 'en');
@@ -905,13 +937,11 @@
   const saved = localStorage.getItem('ff-lang');
   if (saved) setLang(saved);
 
-  // Scroll reveal
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // Cursor warm glow
   const glow = document.getElementById('cursor-glow');
   let gx = 0, gy = 0, cx = 0, cy = 0;
   document.addEventListener('mousemove', e => { gx = e.clientX; gy = e.clientY; });
@@ -922,7 +952,6 @@
   }
   animateGlow();
 
-  // Parallax blobs on scroll
   const blobs = document.querySelectorAll('.blob');
   let ticking = false;
   window.addEventListener('scroll', () => {
